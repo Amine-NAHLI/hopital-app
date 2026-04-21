@@ -25,6 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/rendez-vous', [ApiController::class, 'rendezVous']);
     Route::get('/stats', [ApiController::class, 'stats']);
 
-    // Logout
     Route::post('/logout', [ApiController::class, 'logout']);
 });
