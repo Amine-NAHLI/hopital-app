@@ -25,28 +25,27 @@
 
         <!-- Password -->
         <div class="mb-4">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <label for="password" style="margin-bottom: 0;">Mot de passe</label>
-                @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" style="font-size: 0.75rem;">Oublié ?</a>
-                @endif
-            </div>
+            <label for="password">Mot de passe</label>
             <input id="password" type="password" name="password" required autocomplete="current-password">
             @error('password')
                 <div class="error-msg">{{ $message }}</div>
             @enderror
         </div>
 
-        <!-- Remember Me -->
-        <div class="mb-4">
-            <label for="remember_me" class="checkbox-label">
-                <input id="remember_me" type="checkbox" name="remember">
-                <span>Se souvenir de moi</span>
-            </label>
-        </div>
-
-        <button type="submit" class="btn-submit">
+        <button type="submit" class="btn-submit mb-4">
             Se connecter <i class="bi bi-arrow-right-short ms-1"></i>
         </button>
+
+        <div class="text-center">
+            <div style="display: flex; align-items: center; margin: 20px 0; color: var(--text-muted); font-size: 0.8rem;">
+                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+                <span style="padding: 0 10px;">Pas encore de compte ?</span>
+                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+            </div>
+            
+            <a href="{{ route('register') }}" class="btn-submit" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                S'inscrire <i class="bi bi-person-plus ms-1"></i>
+            </a>
+        </div>
     </form>
 </x-guest-layout>

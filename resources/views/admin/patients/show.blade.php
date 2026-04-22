@@ -18,7 +18,7 @@
                                 {{ strtoupper(substr($patient->prenom, 0, 1)) }}
                             </div>
                         @endif
-                        <span class="position-absolute bottom-0 end-0 p-2 bg-primary rounded-circle border border-white border-4 shadow-sm">
+                        <span class="position-absolute bottom-0 end-0 p-2 bg-primary rounded-circle border border-white border-4 shadow-sm">    
                             <i class="bi bi-shield-check text-white" style="font-size: 0.8rem;"></i>
                         </span>
                     </div>
