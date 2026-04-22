@@ -16,6 +16,15 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
             'medecin' => \App\Http\Middleware\MedecinMiddleware::class,
         ]);
+
+        $middleware->redirectGuestsTo('/login');
+
+        $middleware->redirectUsersTo(function () {
+            if (auth()->check() && auth()->user()->isAdmin()) {
+                return route('admin.dashboard');
+            }
+            return route('medecin.dashboard');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
