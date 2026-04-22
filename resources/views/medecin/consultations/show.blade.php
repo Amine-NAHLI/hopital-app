@@ -44,18 +44,9 @@
                 </div>
                 <div class="card-footer bg-white p-4 border-top">
                     <div class="d-flex gap-3">
-                        @if(auth()->user()->isAdmin())
-                            <a href="{{ route('admin.consultations.edit', $consultation) }}" class="btn btn-warning text-white px-4">
-                                <i class="bi bi-pencil-square me-2"></i> Modifier le rapport
-                            </a>
-                            <a href="{{ route('admin.consultations.index') }}" class="btn btn-outline-secondary px-4">
-                                Retour au journal
-                            </a>
-                        @else
-                            <a href="{{ route('medecin.consultations.index') }}" class="btn btn-outline-secondary px-4">
-                                Retour à mes consultations
-                            </a>
-                        @endif
+                        <a href="{{ route('medecin.consultations.index') }}" class="btn btn-outline-secondary px-4">
+                            <i class="bi bi-arrow-left me-2"></i> Retour à mes consultations
+                        </a>
                     </div>
                 </div>
             </div>
@@ -95,39 +86,22 @@
                 </div>
             </div>
 
-            @if($consultation->ordonnance || $consultation->facture)
+            @if($consultation->ordonnance)
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-white py-4 px-4 border-bottom">
-                        <h5 class="mb-0 fw-bold text-secondary">Documents Liés</h5>
+                        <h5 class="mb-0 fw-bold text-secondary">Document Lié</h5>
                     </div>
                     <div class="card-body p-4">
-                        @if($consultation->ordonnance)
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="bg-danger-light text-danger rounded-3 p-2 me-3" style="background: #fee2e2;">
-                                    <i class="bi bi-file-medical-fill fs-5"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0 fw-bold small">Ordonnance Médicale</h6>
-                                    <a href="{{ auth()->user()->isAdmin() ? route('admin.ordonnances.show', $consultation->ordonnance) : route('medecin.ordonnances.show', $consultation->ordonnance) }}" class="small text-decoration-none">Consulter</a>
-                                </div>
-                                <i class="bi bi-chevron-right text-muted"></i>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-danger-light text-danger rounded-3 p-2 me-3" style="background: #fee2e2;">
+                                <i class="bi bi-file-medical-fill fs-5"></i>
                             </div>
-                        @endif
-                        
-                        @if($consultation->facture)
-                            <div class="d-flex align-items-center">
-                                <div class="bg-success-light text-success rounded-3 p-2 me-3" style="background: #f0fdf4;">
-                                    <i class="bi bi-receipt fs-5"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-0 fw-bold small">Facture #{{ $consultation->facture->numero_facture }}</h6>
-                                    <span class="badge {{ $consultation->facture->statut === 'payee' ? 'bg-success' : 'bg-warning' }} x-small px-2 py-1 rounded-pill">{{ ucfirst($consultation->facture->statut) }}</span>
-                                </div>
-                                @if(auth()->user()->isAdmin())
-                                    <a href="{{ route('admin.factures.show', $consultation->facture) }}" class="text-muted"><i class="bi bi-chevron-right"></i></a>
-                                @endif
+                            <div class="flex-grow-1">
+                                <h6 class="mb-0 fw-bold small">Ordonnance Médicale</h6>
+                                <a href="{{ route('medecin.ordonnances.show', $consultation->ordonnance) }}" class="small text-decoration-none">Consulter l'archive</a>
                             </div>
-                        @endif
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </div>
                     </div>
                 </div>
             @endif

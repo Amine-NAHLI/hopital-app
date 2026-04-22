@@ -82,7 +82,7 @@
                         <i class="bi bi-file-pdf me-2"></i> Télécharger le scan
                     </a>
                 @endif
-                <a href="{{ auth()->user()->isAdmin() ? route('admin.ordonnances.index') : route('medecin.ordonnances.index') }}" class="btn btn-link text-muted text-decoration-none">
+                <a href="{{ route('medecin.ordonnances.index') }}" class="btn btn-link text-muted text-decoration-none">
                     <i class="bi bi-arrow-left"></i> Retour
                 </a>
             </div>
