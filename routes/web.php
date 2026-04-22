@@ -8,12 +8,24 @@ use App\Http\Controllers\RendezVousController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\OrdonnanceController;
 use App\Http\Controllers\FactureController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
 
 require __DIR__ . '/auth.php';
+
+Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
+    $user = auth()->user();
+    return redirect()->route($user->isAdmin() ? 'admin.dashboard' : 'medecin.dashboard');
+})->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 // Routes Admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

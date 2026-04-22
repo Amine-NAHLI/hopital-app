@@ -9,8 +9,8 @@ class MedecinMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || auth()->user()->role === null) {
-            abort(403, 'Accès non autorisé.');
+        if (!auth()->check() || !auth()->user()->isMedecin()) {
+            abort(403, 'Accès réservé aux médecins praticiens.');
         }
 
         return $next($request);

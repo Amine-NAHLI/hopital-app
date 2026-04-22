@@ -79,7 +79,12 @@ class ConsultationController extends Controller
 
     public function show(Consultation $consultation)
     {
-        $prefix = auth()->user()->isAdmin() ? 'admin' : 'medecin';
+        $user = auth()->user();
+        if ($user->isMedecin() && $consultation->medecin_id !== $user->medecin->id) {
+            abort(403, 'Vous n\'êtes pas autorisé à voir cette consultation.');
+        }
+
+        $prefix = $user->isAdmin() ? 'admin' : 'medecin';
         $consultation->load(['patient', 'medecin', 'ordonnance', 'facture']);
         return view("$prefix.consultations.show", compact('consultation'));
     }

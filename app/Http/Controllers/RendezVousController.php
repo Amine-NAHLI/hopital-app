@@ -58,15 +58,25 @@ class RendezVousController extends Controller
 
     public function show(RendezVous $rendezVous)
     {
-        $prefix = auth()->user()->isAdmin() ? 'admin' : 'medecin';
+        $user = auth()->user();
+        if ($user->isMedecin() && $rendezVous->medecin_id !== $user->medecin->id) {
+            abort(403, 'Vous n\'êtes pas autorisé à consulter ce rendez-vous.');
+        }
+
+        $prefix = $user->isAdmin() ? 'admin' : 'medecin';
         return view("$prefix.rendez-vous.show", compact('rendezVous'));
     }
 
     public function edit(RendezVous $rendezVous)
     {
+        $user = auth()->user();
+        if ($user->isMedecin() && $rendezVous->medecin_id !== $user->medecin->id) {
+            abort(403, 'Vous n\'êtes pas autorisé à modifier ce rendez-vous.');
+        }
+
         $patients = Patient::all();
         $medecins = Medecin::all();
-        $prefix = auth()->user()->isAdmin() ? 'admin' : 'medecin';
+        $prefix = $user->isAdmin() ? 'admin' : 'medecin';
         return view("$prefix.rendez-vous.edit", compact('rendezVous', 'patients', 'medecins'));
     }
 

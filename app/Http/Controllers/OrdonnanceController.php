@@ -63,7 +63,12 @@ class OrdonnanceController extends Controller
 
     public function show(Ordonnance $ordonnance)
     {
-        $prefix = auth()->user()->isAdmin() ? 'admin' : 'medecin';
+        $user = auth()->user();
+        if ($user->isMedecin() && $ordonnance->medecin_id !== $user->medecin->id) {
+            abort(403, 'Vous n\'êtes pas autorisé à consulter cette ordonnance.');
+        }
+
+        $prefix = $user->isAdmin() ? 'admin' : 'medecin';
         return view("$prefix.ordonnances.show", compact('ordonnance'));
     }
 
