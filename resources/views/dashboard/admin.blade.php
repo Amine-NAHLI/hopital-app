@@ -5,37 +5,37 @@
 @section('content')
 <div class="row g-4 mb-4">
     <div class="col-md-2">
-        <div class="stat-card" style="background: linear-gradient(135deg, #1a237e, #3949ab)">
+        <div class="stat-card" style="background: linear-gradient(135deg, #0f766e, #14b8a6)">
             <div class="fs-2 fw-bold">{{ $stats['patients'] }}</div>
             <div class="small"><i class="bi bi-people"></i> Patients</div>
         </div>
     </div>
     <div class="col-md-2">
-        <div class="stat-card" style="background: linear-gradient(135deg, #00796b, #009688)">
+        <div class="stat-card" style="background: linear-gradient(135deg, #0284c7, #38bdf8)">
             <div class="fs-2 fw-bold">{{ $stats['medecins'] }}</div>
-            <div class="small"><i class="bi bi-person-badge"></i> Médecins</div>
+            <div class="small"><i class="bi bi-person-badge"></i> Medecins</div>
         </div>
     </div>
     <div class="col-md-2">
-        <div class="stat-card" style="background: linear-gradient(135deg, #e65100, #f57c00)">
+        <div class="stat-card" style="background: linear-gradient(135deg, #d97706, #fbbf24)">
             <div class="fs-2 fw-bold">{{ $stats['rendez_vous'] }}</div>
             <div class="small"><i class="bi bi-calendar-check"></i> Rendez-vous</div>
         </div>
     </div>
     <div class="col-md-2">
-        <div class="stat-card" style="background: linear-gradient(135deg, #4527a0, #7b1fa2)">
+        <div class="stat-card" style="background: linear-gradient(135deg, #7c3aed, #a78bfa)">
             <div class="fs-2 fw-bold">{{ $stats['consultations'] }}</div>
             <div class="small"><i class="bi bi-clipboard2-pulse"></i> Consultations</div>
         </div>
     </div>
     <div class="col-md-2">
-        <div class="stat-card" style="background: linear-gradient(135deg, #c62828, #e53935)">
+        <div class="stat-card" style="background: linear-gradient(135deg, #dc2626, #f87171)">
             <div class="fs-2 fw-bold">{{ $stats['factures'] }}</div>
             <div class="small"><i class="bi bi-receipt"></i> Factures</div>
         </div>
     </div>
     <div class="col-md-2">
-        <div class="stat-card" style="background: linear-gradient(135deg, #2e7d32, #43a047)">
+        <div class="stat-card" style="background: linear-gradient(135deg, #059669, #34d399)">
             <div class="fs-2 fw-bold">{{ number_format($stats['revenus'], 0) }} DH</div>
             <div class="small"><i class="bi bi-cash"></i> Revenus</div>
         </div>
@@ -53,7 +53,7 @@
                     <thead>
                         <tr>
                             <th>Patient</th>
-                            <th>Médecin</th>
+                            <th>Medecin</th>
                             <th>Heure</th>
                             <th>Statut</th>
                         </tr>
@@ -93,7 +93,7 @@
                     <thead>
                         <tr>
                             <th>Patient</th>
-                            <th>Médecin</th>
+                            <th>Medecin</th>
                             <th>Date</th>
                             <th>Statut</th>
                         </tr>

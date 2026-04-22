@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header text-white" style="background:#4527a0">
+        <div class="card-header text-white" style="background: linear-gradient(135deg, #7c3aed, #6d28d9)">
             <i class="bi bi-clipboard2-plus"></i> Nouvelle Consultation
         </div>
         <div class="card-body">
@@ -34,7 +34,7 @@
                         @error('patient_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Médecin <span class="text-danger">*</span></label>
+                        <label class="form-label fw-bold">Medecin <span class="text-danger">*</span></label>
                         <select name="medecin_id" class="form-select @error('medecin_id') is-invalid @enderror">
                             <option value="">-- Choisir --</option>
                             @foreach($medecins as $m)

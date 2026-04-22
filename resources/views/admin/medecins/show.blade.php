@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Fiche Médecin')
-@section('page-title', 'Fiche Médecin')
+@section('title', 'Fiche Medecin')
+@section('page-title', 'Fiche Medecin')
 
 @section('content')
     <div class="row g-4">
@@ -11,16 +11,16 @@
                         <img src="{{ asset('storage/' . $medecin->photo) }}" class="rounded-circle mb-3" width="120" height="120"
                             style="object-fit:cover">
                     @else
-                        <div class="rounded-circle bg-success text-white d-flex align-items-center
-                                        justify-content-center mx-auto mb-3" style="width:120px;height:120px;font-size:40px">
+                        <div class="avatar-circle avatar-circle-lg mx-auto mb-3"
+                            style="background: linear-gradient(135deg, #059669, #34d399);">
                             {{ strtoupper(substr($medecin->prenom, 0, 1)) }}
                         </div>
                     @endif
                     <h4>{{ $medecin->nom_complet }}</h4>
-                    <span class="badge bg-info text-dark mb-3">{{ $medecin->specialite }}</span>
+                    <span class="badge bg-info mb-3">{{ $medecin->specialite }}</span>
                     <table class="table table-sm text-start">
                         <tr>
-                            <th>Téléphone</th>
+                            <th>Telephone</th>
                             <td>{{ $medecin->telephone }}</td>
                         </tr>
                         <tr>
@@ -42,7 +42,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <i class="bi bi-calendar-check"></i> Rendez-vous récents
+                    <i class="bi bi-calendar-check"></i> Rendez-vous recents
                 </div>
                 <div class="card-body p-0">
                     <table class="table mb-0">

@@ -13,7 +13,7 @@
         <div class="card-body">
             <form method="GET" class="mb-3">
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Rechercher par nom, prénom ou CIN..."
+                    <input type="text" name="search" class="form-control" placeholder="Rechercher par nom, prenom ou CIN..."
                         value="{{ $search }}">
                     <button class="btn btn-primary" type="submit">
                         <i class="bi bi-search"></i> Rechercher
@@ -26,14 +26,14 @@
                 </div>
             </form>
 
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Photo</th>
                         <th>Nom Complet</th>
                         <th>CIN</th>
-                        <th>Téléphone</th>
+                        <th>Telephone</th>
                         <th>Sexe</th>
                         <th>Date Naissance</th>
                         <th>Actions</th>
@@ -48,9 +48,7 @@
                                     <img src="{{ asset('storage/' . $patient->photo) }}" class="rounded-circle" width="40" height="40"
                                         style="object-fit:cover">
                                 @else
-                                    <div class="rounded-circle bg-secondary d-flex align-items-center
-                                                    justify-content-center text-white"
-                                        style="width:40px;height:40px;font-size:16px">
+                                    <div class="avatar-circle" style="background: linear-gradient(135deg, #0f766e, #14b8a6);">
                                         {{ strtoupper(substr($patient->prenom, 0, 1)) }}
                                     </div>
                                 @endif
@@ -83,7 +81,7 @@
                     @empty
                         <tr>
                             <td colspan="8" class="text-center text-muted py-4">
-                                Aucun patient trouvé.
+                                Aucun patient trouve.
                             </td>
                         </tr>
                     @endforelse

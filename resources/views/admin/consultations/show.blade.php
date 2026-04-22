@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Détail Consultation')
-@section('page-title', 'Détail de la Consultation')
+@section('title', 'Detail Consultation')
+@section('page-title', 'Detail de la Consultation')
 
 @section('content')
     <div class="card">
-        <div class="card-header text-white" style="background:#4527a0">
+        <div class="card-header text-white" style="background: linear-gradient(135deg, #7c3aed, #6d28d9)">
             <i class="bi bi-clipboard2-pulse"></i> Consultation #{{ $consultation->id }}
         </div>
         <div class="card-body">
@@ -17,7 +17,7 @@
                             <td>{{ $consultation->patient->nom_complet }}</td>
                         </tr>
                         <tr>
-                            <th>Médecin</th>
+                            <th>Medecin</th>
                             <td>{{ $consultation->medecin->nom_complet }}</td>
                         </tr>
                         <tr>
@@ -31,7 +31,7 @@
                     </table>
                 </div>
                 <div class="col-md-6">
-                    <h5 class="fw-bold border-bottom pb-2">Médical</h5>
+                    <h5 class="fw-bold border-bottom pb-2">Medical</h5>
                     <div class="mb-3">
                         <strong>Diagnostic :</strong>
                         <p class="mt-1">{{ $consultation->diagnostic }}</p>
@@ -49,7 +49,7 @@
                 @if($consultation->ordonnance)
                     <div class="col-12">
                         <div class="alert alert-success">
-                            <i class="bi bi-file-medical"></i> Une ordonnance a été créée pour cette consultation.
+                            <i class="bi bi-file-medical"></i> Une ordonnance a ete creee pour cette consultation.
                             <a href="{{ route('admin.ordonnances.show', $consultation->ordonnance) }}"
                                 class="btn btn-sm btn-success ms-2">Voir l'ordonnance</a>
                         </div>

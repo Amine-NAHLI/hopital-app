@@ -11,8 +11,8 @@
                         <img src="{{ asset('storage/' . $patient->photo) }}" class="rounded-circle mb-3" width="120" height="120"
                             style="object-fit:cover">
                     @else
-                        <div class="rounded-circle bg-primary text-white d-flex align-items-center
-                                        justify-content-center mx-auto mb-3" style="width:120px;height:120px;font-size:40px">
+                        <div class="avatar-circle avatar-circle-lg mx-auto mb-3"
+                            style="background: linear-gradient(135deg, #0f766e, #14b8a6);">
                             {{ strtoupper(substr($patient->prenom, 0, 1)) }}
                         </div>
                     @endif
@@ -27,11 +27,11 @@
                             <td>{{ $patient->cin }}</td>
                         </tr>
                         <tr>
-                            <th>Né(e) le</th>
+                            <th>Ne(e) le</th>
                             <td>{{ \Carbon\Carbon::parse($patient->date_naissance)->format('d/m/Y') }}</td>
                         </tr>
                         <tr>
-                            <th>Téléphone</th>
+                            <th>Telephone</th>
                             <td>{{ $patient->telephone }}</td>
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                     </table>
                     @if($patient->antecedents)
                         <div class="alert alert-warning text-start mt-2">
-                            <strong><i class="bi bi-exclamation-triangle"></i> Antécédents :</strong><br>
+                            <strong><i class="bi bi-exclamation-triangle"></i> Antecedents :</strong><br>
                             {{ $patient->antecedents }}
                         </div>
                     @endif
@@ -71,7 +71,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Médecin</th>
+                                <th>Medecin</th>
                                 <th>Statut</th>
                             </tr>
                         </thead>
@@ -101,7 +101,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Médecin</th>
+                                <th>Medecin</th>
                                 <th>Diagnostic</th>
                                 <th>Prix</th>
                             </tr>
@@ -132,7 +132,7 @@
                     <table class="table mb-0">
                         <thead>
                             <tr>
-                                <th>Numéro</th>
+                                <th>Numero</th>
                                 <th>Date</th>
                                 <th>Montant</th>
                                 <th>Statut</th>
@@ -145,8 +145,7 @@
                                     <td>{{ \Carbon\Carbon::parse($f->date_facture)->format('d/m/Y') }}</td>
                                     <td>{{ $f->montant_total }} DH</td>
                                     <td>
-                                        <span
-                                            class="badge bg-{{ $f->statut === 'payee' ? 'success' : ($f->statut === 'annulee' ? 'danger' : 'warning') }}">
+                                        <span class="badge bg-{{ $f->statut === 'payee' ? 'success' : ($f->statut === 'annulee' ? 'danger' : 'warning') }}">
                                             {{ ucfirst($f->statut) }}
                                         </span>
                                     </td>

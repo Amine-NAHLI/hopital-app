@@ -11,14 +11,14 @@
             </a>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Patient</th>
-                        <th>Médecin</th>
+                        <th>Medecin</th>
                         <th>Date</th>
-                        <th>Médicaments</th>
+                        <th>Medicaments</th>
                         <th>Fichier</th>
                         <th>Actions</th>
                     </tr>

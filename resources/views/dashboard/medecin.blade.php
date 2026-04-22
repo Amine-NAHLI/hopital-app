@@ -1,29 +1,29 @@
 @extends('layouts.app')
-@section('title', 'Dashboard Médecin')
+@section('title', 'Dashboard Medecin')
 @section('page-title', 'Tableau de bord — Dr. {{ $medecin->nom_complet }}')
 
 @section('content')
     <div class="row g-4 mb-4">
         <div class="col-md-3">
-            <div class="stat-card" style="background: linear-gradient(135deg, #1a237e, #3949ab)">
+            <div class="stat-card" style="background: linear-gradient(135deg, #0f766e, #14b8a6)">
                 <div class="fs-2 fw-bold">{{ $stats['rdv_total'] }}</div>
                 <div class="small"><i class="bi bi-calendar"></i> Total Rendez-vous</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card" style="background: linear-gradient(135deg, #e65100, #f57c00)">
+            <div class="stat-card" style="background: linear-gradient(135deg, #d97706, #fbbf24)">
                 <div class="fs-2 fw-bold">{{ $stats['rdv_aujourdhui'] }}</div>
                 <div class="small"><i class="bi bi-calendar-day"></i> Aujourd'hui</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card" style="background: linear-gradient(135deg, #4527a0, #7b1fa2)">
+            <div class="stat-card" style="background: linear-gradient(135deg, #7c3aed, #a78bfa)">
                 <div class="fs-2 fw-bold">{{ $stats['consultations'] }}</div>
                 <div class="small"><i class="bi bi-clipboard2-pulse"></i> Consultations</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="stat-card" style="background: linear-gradient(135deg, #2e7d32, #43a047)">
+            <div class="stat-card" style="background: linear-gradient(135deg, #059669, #34d399)">
                 <div class="fs-2 fw-bold">{{ $stats['patients'] }}</div>
                 <div class="small"><i class="bi bi-people"></i> Patients suivis</div>
             </div>

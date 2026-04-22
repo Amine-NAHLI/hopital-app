@@ -1,19 +1,19 @@
 @extends('layouts.app')
-@section('title', 'Médecins')
-@section('page-title', 'Gestion des Médecins')
+@section('title', 'Medecins')
+@section('page-title', 'Gestion des Medecins')
 
 @section('content')
     <div class="card">
         <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-            <span><i class="bi bi-person-badge"></i> Liste des Médecins</span>
+            <span><i class="bi bi-person-badge"></i> Liste des Medecins</span>
             <a href="{{ route('admin.medecins.create') }}" class="btn btn-light btn-sm">
-                <i class="bi bi-plus-circle"></i> Nouveau Médecin
+                <i class="bi bi-plus-circle"></i> Nouveau Medecin
             </a>
         </div>
         <div class="card-body">
             <form method="GET" class="mb-3">
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Rechercher par nom ou spécialité..."
+                    <input type="text" name="search" class="form-control" placeholder="Rechercher par nom ou specialite..."
                         value="{{ $search }}">
                     <button class="btn btn-success" type="submit">
                         <i class="bi bi-search"></i>
@@ -35,14 +35,13 @@
                                     <img src="{{ asset('storage/' . $medecin->photo) }}" class="rounded-circle mb-3" width="80"
                                         height="80" style="object-fit:cover">
                                 @else
-                                    <div class="rounded-circle bg-success text-white d-flex align-items-center
-                                                    justify-content-center mx-auto mb-3"
-                                        style="width:80px;height:80px;font-size:28px">
+                                    <div class="avatar-circle avatar-circle-md mx-auto mb-3"
+                                        style="background: linear-gradient(135deg, #059669, #34d399);">
                                         {{ strtoupper(substr($medecin->prenom, 0, 1)) }}
                                     </div>
                                 @endif
                                 <h5>{{ $medecin->nom_complet }}</h5>
-                                <span class="badge bg-info text-dark mb-2">{{ $medecin->specialite }}</span>
+                                <span class="badge bg-info mb-2">{{ $medecin->specialite }}</span>
                                 <p class="text-muted small mb-1"><i class="bi bi-telephone"></i> {{ $medecin->telephone }}</p>
                                 <p class="text-muted small"><i class="bi bi-envelope"></i> {{ $medecin->email }}</p>
                                 <div class="d-flex gap-2 justify-content-center">
@@ -54,7 +53,7 @@
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form method="POST" action="{{ route('admin.medecins.destroy', $medecin) }}"
-                                        onsubmit="return confirm('Supprimer ce médecin ?')">
+                                        onsubmit="return confirm('Supprimer ce medecin ?')">
                                         @csrf @method('DELETE')
                                         <button class="btn btn-sm btn-danger">
                                             <i class="bi bi-trash"></i>
@@ -66,7 +65,7 @@
                     </div>
                 @empty
                     <div class="col-12 text-center text-muted py-4">
-                        Aucun médecin trouvé.
+                        Aucun medecin trouve.
                     </div>
                 @endforelse
             </div>

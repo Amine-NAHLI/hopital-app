@@ -4,20 +4,20 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header bg-purple text-white d-flex justify-content-between align-items-center"
-            style="background:#4527a0!important">
+        <div class="card-header text-white d-flex justify-content-between align-items-center"
+            style="background: linear-gradient(135deg, #7c3aed, #6d28d9)">
             <span><i class="bi bi-clipboard2-pulse"></i> Liste des Consultations</span>
             <a href="{{ route('admin.consultations.create') }}" class="btn btn-light btn-sm">
                 <i class="bi bi-plus-circle"></i> Nouvelle Consultation
             </a>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Patient</th>
-                        <th>Médecin</th>
+                        <th>Medecin</th>
                         <th>Date</th>
                         <th>Diagnostic</th>
                         <th>Prix</th>

@@ -8,10 +8,10 @@
             <span><i class="bi bi-receipt"></i> Liste des Factures</span>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Numéro</th>
+                        <th>Numero</th>
                         <th>Patient</th>
                         <th>Date</th>
                         <th>Montant</th>
