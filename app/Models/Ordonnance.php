@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : Ordonnance.php
+ * Description : Modèle de données pour les ordonnances.
+ * Rôle : Gère les informations des ordonnances prescrites aux patients.
+ */
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : PatientController.php
+ * Description : Contrôleur pour la gestion des patients.
+ * Rôle : Gère le CRUD (Création, Lecture, Mise à jour, Suppression) des dossiers patients.
+ */
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Patient;

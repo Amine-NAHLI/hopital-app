@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : MedecinController.php
+ * Description : Contrôleur pour la gestion des médecins.
+ * Rôle : Gère le CRUD (Création, Lecture, Mise à jour, Suppression) des profils médecins par l'administrateur.
+ */
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Medecin;

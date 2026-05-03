@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : RendezVousController.php
+ * Description : Contrôleur gérant les rendez-vous.
+ * Rôle : Permet de planifier, d'afficher et de modifier le statut des rendez-vous entre patients et médecins.
+ */
+
+
 namespace App\Http\Controllers;
 
 use App\Models\RendezVous;

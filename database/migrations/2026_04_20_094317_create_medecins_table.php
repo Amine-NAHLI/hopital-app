@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Migration : create_medecins_table
+ * Description : Création de la table 'medecins'.
+ * Rôle : Stocke les informations professionnelles des médecins, liées à un compte utilisateur.
+ */
+
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

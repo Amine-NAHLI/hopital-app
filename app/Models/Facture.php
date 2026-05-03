@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : Facture.php
+ * Description : Modèle de données pour les factures.
+ * Rôle : Gère les informations de facturation liées aux consultations médicales.
+ */
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : Consultation.php
+ * Description : Modèle de données pour les consultations.
+ * Rôle : Définit la structure et les relations d'une consultation médicale dans la base de données.
+ */
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : OrdonnanceController.php
+ * Description : Contrôleur gérant les ordonnances médicales.
+ * Rôle : Permet de créer, d'afficher et de gérer les ordonnances prescrites lors des consultations.
+ */
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Ordonnance;

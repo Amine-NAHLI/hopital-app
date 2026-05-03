@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : Patient.php
+ * Description : Modèle de données pour les patients.
+ * Rôle : Gère les informations personnelles et médicales de base des patients.
+ */
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

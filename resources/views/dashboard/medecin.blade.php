@@ -1,4 +1,10 @@
+{{--
+    Fichier : medecin.blade.php
+    Description : Tableau de bord spécifique aux médecins.
+    Rôle : Affiche les statistiques du médecin connecté, ses rendez-vous du jour et permet un accès rapide aux dossiers patients.
+--}}
 @extends('layouts.app')
+
 @section('title', 'Dashboard Medecin')
 @section('page-title', 'Espace Praticien — Dr. {{ $medecin->nom_complet }}')
 

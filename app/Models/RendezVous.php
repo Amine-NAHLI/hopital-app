@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : RendezVous.php
+ * Description : Modèle de données pour les rendez-vous.
+ * Rôle : Gère le planning et le statut des rendez-vous entre médecins et patients.
+ */
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Migration : create_patients_table
+ * Description : Création de la table 'patients'.
+ * Rôle : Définit les colonnes pour stocker les informations personnelles, le numéro de sécurité sociale et les antécédents des patients.
+ */
+
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

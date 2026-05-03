@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : auth.php
+ * Description : Routes d'authentification.
+ * Rôle : Gère les accès pour la connexion, l'inscription, la réinitialisation de mot de passe et la vérification d'email.
+ */
+
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;

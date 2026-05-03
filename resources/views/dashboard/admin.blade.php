@@ -1,3 +1,8 @@
+{{--
+    Fichier : admin.blade.php
+    Description : Tableau de bord de l'administrateur.
+    Rôle : Affiche les statistiques globales du système (patients, médecins, revenus) et les rendez-vous récents.
+--}}
 @extends('layouts.app')
 @section('title', 'Dashboard Admin')
 @section('page-title', 'Vue d\'ensemble Hospitalière')

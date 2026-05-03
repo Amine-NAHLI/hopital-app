@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : FactureController.php
+ * Description : Contrôleur gérant les factures.
+ * Rôle : Permet d'afficher, de gérer le statut de paiement et de supprimer les factures liées aux consultations.
+ */
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Facture;

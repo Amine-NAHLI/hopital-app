@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : Medecin.php
+ * Description : Modèle de données pour les médecins.
+ * Rôle : Représente un médecin et définit ses relations avec les utilisateurs, spécialités et consultations.
+ */
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : AdminMiddleware.php
+ * Description : Middleware de sécurité pour les administrateurs.
+ * Rôle : Vérifie si l'utilisateur connecté possède le rôle 'admin' avant de permettre l'accès aux routes protégées.
+ */
+
+
 namespace App\Http\Middleware;
 
 use Closure;

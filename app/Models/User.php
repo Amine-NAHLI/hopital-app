@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : User.php
+ * Description : Modèle de données pour les utilisateurs.
+ * Rôle : Gère l'authentification, les profils et les rôles (Admin, Médecin, etc.) au sein de l'application.
+ */
+
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

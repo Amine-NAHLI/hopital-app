@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : app.php (Bootstrap)
+ * Description : Configuration de l'application Laravel 11.
+ * Rôle : Configure les routes, le middleware et les exceptions de l'application.
+ */
+
+
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;

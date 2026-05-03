@@ -1,4 +1,10 @@
+{{--
+    Fichier : welcome.blade.php
+    Description : Page d'accueil publique du site.
+    Rôle : Présente l'hôpital et propose les liens de connexion ou d'inscription.
+--}}
 <!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">

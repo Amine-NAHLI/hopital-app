@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : MedecinMiddleware.php
+ * Description : Middleware de sécurité pour les médecins.
+ * Rôle : Vérifie si l'utilisateur connecté possède le rôle 'medecin' avant de permettre l'accès aux routes réservées aux praticiens.
+ */
+
+
 namespace App\Http\Middleware;
 
 use Closure;

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : DashboardController.php
+ * Description : Contrôleur pour le tableau de bord.
+ * Rôle : Gère l'affichage des statistiques et des informations récapitulatives selon le rôle de l'utilisateur (Admin ou Médecin).
+ */
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Patient;

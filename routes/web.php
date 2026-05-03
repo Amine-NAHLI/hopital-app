@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : web.php
+ * Description : Définition des routes Web de l'application.
+ * Rôle : Mappe les URLs vers les contrôleurs correspondants pour l'interface utilisateur.
+ */
+
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;

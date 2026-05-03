@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Fichier : ConsultationController.php
+ * Description : Contrôleur gérant les consultations médicales.
+ * Rôle : Permet de créer, afficher, modifier et supprimer des consultations, ainsi que de générer les factures associées.
+ */
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Consultation;

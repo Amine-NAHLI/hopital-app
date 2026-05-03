@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Seeder : UserSeeder.php
+ * Description : Peuplement de la table des utilisateurs.
+ * Rôle : Crée les comptes par défaut pour l'administration et les tests (Admin, Médecins).
+ */
+
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
