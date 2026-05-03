@@ -1,59 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏥 MediCore Pro — Hospital Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![MediCore Pro Banner](medicore_pro_banner_1777819233017.png)
 
-## About Laravel
+## 📋 À propos
+**MediCore Pro** est une plateforme moderne et intuitive de gestion hospitalière conçue pour simplifier les interactions entre le personnel administratif, les médecins et les patients. Le système centralise la gestion des dossiers médicaux, les rendez-vous, les prescriptions et la facturation dans une interface élégante et performante.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Fonctionnalités Clés
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 👨‍💼 Espace Administration
+- **Tableau de bord global** : Statistiques en temps réel sur l'activité hospitalière (revenus, nouveaux patients, consultations).
+- **Gestion des Ressources Humaines** : CRUD complet des profils médecins et personnels.
+- **Suivi des Dossiers** : Accès centralisé à l'ensemble des patients et de leurs historiques.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🩺 Espace Praticien (Médecin)
+- **Dashboard personnalisé** : Vue immédiate sur les rendez-vous du jour.
+- **Gestion des Consultations** : Saisie rapide des diagnostics, notes et traitements.
+- **Ordonnances Digitales** : Génération et suivi des prescriptions médicales.
+- **Base Patients** : Historique détaillé pour chaque patient suivi.
 
-## Learning Laravel
+### 🗓️ Gestion des Flux
+- **Système de Rendez-vous** : Planification intelligente et suivi des statuts (Confirmé, En attente, Terminé).
+- **Facturation Automatisée** : Génération de factures dès la validation d'une consultation.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Stack Technique
+- **Framework** : Laravel 12.x
+- **Frontend** : Blade Templates + Vanilla CSS (Custom Design System 3.0)
+- **Base de données** : MySQL / SQLite
+- **Authentification** : Laravel Breeze (Personnalisé)
+- **Vite** : Pour la compilation des assets
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Installation
 
-## Laravel Sponsors
+1. **Cloner le projet**
+   ```bash
+   git clone [url-du-repo]
+   cd hopital-app
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Installer les dépendances**
+   ```bash
+   composer install
+   npm install
+   ```
 
-### Premium Partners
+3. **Configuration de l'environnement**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4. **Migration & Seed (Initialisation)**
+   ```bash
+   php artisan migrate --seed
+   ```
 
-## Contributing
+5. **Lancer l'application**
+   ```bash
+   php artisan serve
+   # Dans un autre terminal
+   npm run dev
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📂 Structure Documentée
+Chaque fichier de code du projet a été mis à jour pour inclure une description détaillée de son rôle et de ses fonctionnalités, facilitant ainsi la maintenance et l'évolution du système.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+*Développé avec ❤️ pour une gestion médicale plus efficace.*
