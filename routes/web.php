@@ -18,7 +18,8 @@ use App\Http\Controllers\FactureController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = \App\Models\User::all();
+    return view('welcome', compact('users'));
 });
 
 require __DIR__ . '/auth.php';

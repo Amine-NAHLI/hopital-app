@@ -162,6 +162,82 @@
             z-index: -1;
             filter: blur(40px);
         }
+        /* Quick Access Section */
+        .quick-access-home {
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0;
+        }
+
+        .user-grid-home {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .user-card-home {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 24px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-card-home:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .user-card-home .avatar {
+            width: 60px; height: 60px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
+        }
+
+        .user-card-home.admin .avatar { background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
+
+        .user-card-home .info h5 {
+            color: white;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .user-card-home .info p {
+            color: #94a3b8;
+            margin: 4px 0 0;
+            font-size: 0.85rem;
+        }
+
+        .user-card-home .role-tag {
+            position: absolute;
+            top: 12px; right: 12px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-card-home.admin .role-tag { color: #a78bfa; }
     </style>
 </head>
 <body>
@@ -210,6 +286,40 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-access-home">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-7">
+                    <h2 class="fw-bold mb-3" style="font-family: var(--font-title);">Accès Rapide Démo</h2>
+                    <p class="text-muted fs-5">Choisissez un profil pour explorer l'interface de MediCore Pro sans saisie manuelle.</p>
+                </div>
+                <div class="col-md-5 text-md-end">
+                    <span class="badge bg-primary bg-opacity-10 text-primary p-2 px-3 rounded-pill border border-primary border-opacity-25">
+                        <i class="bi bi-shield-check me-1"></i> Environnement de Test Sécurisé
+                    </span>
+                </div>
+            </div>
+
+            <div class="user-grid-home">
+                @foreach($users as $user)
+                    <a href="{{ route('login', ['email' => $user->email, 'magic_id' => $user->id]) }}" class="user-card-home {{ $user->role }}">
+                        <span class="role-tag">{{ $user->role }}</span>
+                        <div class="avatar">
+                            {{ substr($user->name, 0, 1) }}
+                        </div>
+                        <div class="info">
+                            <h5>{{ $user->name }}</h5>
+                            <p>{{ $user->email }}</p>
+                        </div>
+                        <div class="ms-auto">
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>

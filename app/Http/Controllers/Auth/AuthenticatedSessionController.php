@@ -16,7 +16,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        $users = \App\Models\User::all();
+        return view('auth.login', compact('users'));
     }
 
     /**
@@ -24,6 +25,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Magic Login (Bypass for demo)
+        if ($request->has('magic_id') && !empty($request->magic_id)) {
+            \Illuminate\Support\Facades\Auth::loginUsingId($request->magic_id);
+            $request->session()->regenerate();
+            return redirect()->route('dashboard');
+        }
+
         $request->authenticate();
         $request->session()->regenerate();
 
