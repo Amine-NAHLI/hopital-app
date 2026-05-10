@@ -454,6 +454,30 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+
+    <style>
+        #nprogress .bar { background: var(--primary) !important; height: 3px !important; }
+        #nprogress .spinner-icon { border-top-color: var(--primary) !important; border-left-color: var(--primary) !important; }
+    </style>
+
+    <script>
+        // Progress bar on page load
+        NProgress.start();
+        window.onload = function() { NProgress.done(); };
+
+        // Progress bar on every link click or form submission
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a');
+            if (target && target.href && !target.target && !target.href.includes('#')) {
+                NProgress.start();
+            }
+        });
+        document.addEventListener('submit', function() {
+            NProgress.start();
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>

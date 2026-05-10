@@ -128,5 +128,16 @@
     <div class="auth-container">
         {{ $slot }}
     </div>
+
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    <style>
+        #nprogress .bar { background: var(--primary) !important; height: 3px !important; }
+    </style>
+    <script>
+        NProgress.start();
+        window.onload = function() { NProgress.done(); };
+        document.addEventListener('submit', function() { NProgress.start(); });
+    </script>
 </body>
 </html>

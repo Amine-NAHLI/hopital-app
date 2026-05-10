@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+    // Endpoint : Liste des utilisateurs pour la démo (Public)
+    public function demoUsers()
+    {
+        $users = \App\Models\User::all(['id', 'name', 'email', 'role']);
+        return response()->json([
+            'success' => true,
+            'data' => $users
+        ]);
+    }
+
     // Endpoint 1 : Liste des patients
     public function patients()
     {
@@ -90,6 +100,25 @@ class ApiController extends Controller
     // Login API : générer un token
     public function login(Request $request)
     {
+        // Magic Login (Bypass pour les tests/démo)
+        if ($request->has('magic_id')) {
+            $user = \App\Models\User::find($request->magic_id);
+            if ($user) {
+                $token = $user->createToken('api-token')->plainTextToken;
+                return response()->json([
+                    'success' => true,
+                    'token' => $token,
+                    'user' => [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'role' => $user->role,
+                    ],
+                    'message' => 'Connexion Magique réussie'
+                ]);
+            }
+        }
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',

@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiController;
 
-// Route publique : login API
+// Routes publiques
+Route::get('/demo-users', [ApiController::class, 'demoUsers']);
 Route::post('/login', [ApiController::class, 'login']);
 
 // Routes protégées par token Sanctum

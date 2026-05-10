@@ -85,7 +85,7 @@
             const magicIdInput = document.getElementById('magic_id');
             
             emailInput.value = email;
-            passwordInput.value = '••••••••';
+            passwordInput.value = 'password123';
             magicIdInput.value = id;
             
             emailInput.style.borderColor = 'var(--primary)';
@@ -94,7 +94,7 @@
             
             setTimeout(() => {
                 document.getElementById('loginForm').submit();
-            }, 800);
+            }, 300);
         }
     </script>
 
