@@ -1,299 +1,154 @@
 {{--
     Fichier : app.blade.php
-    Description : Layout principal de l'application pour les utilisateurs connectés.
-    Rôle : Définit la structure HTML de base, inclut le CSS global, la barre de navigation et le contenu dynamique.
+    Description : Layout principal futuriste (Thème Clair) pour MediCore Pro Nova.
 --}}
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MediCore Pro - Système de Gestion Hospitalière">
-    <title>@yield('title', 'MediCore Pro')</title>
+    <meta name="description" content="MediCore Pro Nova - L'avenir de la gestion hospitalière">
+    <title>@yield('title', 'MediCore Pro Nova')</title>
 
-    <!-- Fonts -->
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Icons & Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         /* ═══════════════════════════════════════════════════════════
-           MediCore Pro — Design System 3.0
-           Built from scratch. Clean, purposeful, real product design.
+           MediCore Pro Nova — Futuristic Light Design System
            ═══════════════════════════════════════════════════════════ */
-
-        /* ── TOKENS ─────────────────────────────────────────────────── */
         :root {
-            /* Surfaces */
-            --bg:       #F5F7FA;
-            --surface:  #FFFFFF;
-            --border:   #E5E7EB;
-            --border-2: #D1D5DB;
-
-            /* Text — three levels of emphasis */
-            --t1: #111827;   /* headings / strong labels */
-            --t2: #374151;   /* body copy */
-            --t3: #6B7280;   /* secondary / captions */
-            --t4: #9CA3AF;   /* placeholders / disabled */
-
-            /* Primary action — trust blue */
-            --blue:      #2563EB;
-            --blue-h:    #1D4ED8;
-            --blue-bg:   #EFF6FF;
-            --blue-ring: rgba(37, 99, 235, 0.14);
-
-            /* Accent (used in brand wordmark) */
-            --accent:    #22D3EE;
-
-            /* Status */
-            --green:     #16A34A;  --green-bg:  #DCFCE7;
-            --amber:     #B45309;  --amber-bg:  #FEF3C7;
-            --red:       #DC2626;  --red-bg:    #FEE2E2;
-            --sky:       #0369A1;  --sky-bg:    #E0F2FE;
-            --violet:    #6D28D9;  --violet-bg: #EDE9FE;
-            --teal:      #0F766E;  --teal-bg:   #CCFBF1;
-            --rose:      #BE123C;  --rose-bg:   #FFE4E6;
-
-            /* Sidebar */
-            --sb-bg: #0C0D10;
-            --sb-w:  248px;
-
-            /* Layout */
-            --tb-h:  60px;
-
-            /* Radius */
-            --r-xs: 4px;
-            --r-sm: 6px;
-            --r-md: 8px;
-            --r-lg: 12px;
-
-            /* Elevation — subtle, realistic */
-            --e1: 0 1px 2px rgba(0,0,0,0.05);
-            --e2: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
-            --e3: 0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
-
-            /* Motion — intentionally short */
-            --ease: 0.14s ease;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --secondary: #0ea5e9;
+            --accent: #f43f5e;
+            --bg-nova: #f8fafc;
+            --surface-nova: rgba(255, 255, 255, 0.85);
+            --border-nova: rgba(255, 255, 255, 0.5);
+            --text-nova-main: #0f172a;
+            --text-nova-muted: #64748b;
+            
+            --sb-w: 280px;
+            --tb-h: 70px;
+            
+            --nova-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 10px -2px rgba(0, 0, 0, 0.02);
+            --nova-glass: blur(12px) saturate(180%);
         }
-
-        /* ── RESET & BASE ───────────────────────────────────────────── */
-        *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-            background: var(--bg);
-            color: var(--t2);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Sora', 'Inter', sans-serif;
-            color: var(--t1);
-            line-height: 1.3;
-            letter-spacing: -0.02em;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-nova);
+            color: var(--text-nova-main);
             margin: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.05) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(244, 63, 94, 0.02) 0px, transparent 50%);
+            background-attachment: fixed;
         }
 
-        a { color: inherit; text-decoration: none; }
-
-        /* Thin, unobtrusive scrollbar */
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
-
-        /* ── SIDEBAR ────────────────────────────────────────────────── */
+        /* ── SIDEBAR NOVA ───────────────────────────────────────────── */
         .sidebar {
             width: var(--sb-w);
             height: 100vh;
-            background: var(--sb-bg);
+            background: var(--surface-nova);
+            backdrop-filter: var(--nova-glass);
+            border-right: 1px solid rgba(226, 232, 240, 0.8);
             position: fixed;
             left: 0; top: 0;
-            z-index: 100;
+            z-index: 1000;
+            padding: 24px 16px;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-            border-right: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Single-pixel accent line at the very top */
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--blue);
-            opacity: 0.8;
-            z-index: 1;
-        }
-
-        /* Brand header — same height as topbar */
         .sidebar-brand {
-            height: var(--tb-h);
-            padding: 0 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            padding: 0 12px 32px;
             text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            flex-shrink: 0;
         }
 
-        .brand-logo {
-            width: 30px; height: 30px;
-            background: var(--blue);
-            border-radius: var(--r-md);
+        .logo-nova {
+            width: 42px; height: 42px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
+            box-shadow: 0 8px 16px var(--primary-glow);
+            color: white; font-size: 20px;
         }
 
-        /* Kill old pulse animation */
-        .brand-logo::after { display: none !important; }
-        .brand-logo i { color: white; font-size: 15px; }
-
-        .brand-name {
+        .brand-text {
             font-family: 'Sora', sans-serif;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-section { margin-bottom: 24px; }
+        .nav-label {
+            font-size: 11px;
             font-weight: 700;
-            color: rgba(255,255,255,0.90);
-            letter-spacing: -0.02em;
-        }
-
-        /* Navigation body */
-        .sidebar-nav {
-            flex: 1;
-            padding: 8px 8px 16px;
-            overflow-y: auto;
-        }
-
-        .sidebar-nav::-webkit-scrollbar { width: 0; }
-
-        /* Section labels */
-        .nav-section-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.22);
-            padding: 16px 8px 4px;
-            display: block;
+            color: var(--text-nova-muted);
+            padding: 0 12px 12px;
+            opacity: 0.7;
         }
 
-        .nav-section-title::after { display: none !important; }
-
-        /* Nav items */
-        .nav-link {
+        .nav-item {
             display: flex;
             align-items: center;
-            gap: 9px;
-            padding: 7px 10px;
-            border-radius: var(--r-sm);
-            margin-bottom: 1px;
-            font-size: 13px;
-            font-weight: 400;
-            color: rgba(255,255,255,0.48);
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            color: var(--text-nova-muted);
             text-decoration: none;
-            transition: background var(--ease), color var(--ease);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-bottom: 4px;
+        }
+
+        .nav-item i { font-size: 1.1rem; transition: all 0.3s ease; }
+
+        .nav-item:hover {
+            background: white;
+            color: var(--primary);
+            box-shadow: var(--nova-shadow);
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: var(--nova-shadow);
             position: relative;
-            overflow: hidden;
         }
 
-        .nav-link i {
-            font-size: 14px;
-            width: 16px;
-            text-align: center;
-            flex-shrink: 0;
-            opacity: 0.7;
-            transition: opacity var(--ease);
-        }
-
-        .nav-link:hover {
-            background: rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.82);
-            transform: none;
-        }
-
-        .nav-link:hover i { opacity: 1; }
-
-        /* Active: 2px blue left bar + tinted bg */
-        .nav-link.active {
-            background: rgba(37,99,235,0.14);
-            color: rgba(255,255,255,0.95);
-            font-weight: 500;
-        }
-
-        .nav-link.active::before {
+        .nav-item.active::after {
             content: '';
             position: absolute;
-            left: 0; top: 5px; bottom: 5px;
-            width: 2px;
-            background: var(--blue);
-            border-radius: 0 2px 2px 0;
-        }
-
-        .nav-link.active i { opacity: 1; }
-
-        /* User footer */
-        .sidebar-footer {
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding: 10px;
-            flex-shrink: 0;
-        }
-
-        .user-widget {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            padding: 8px;
-            border-radius: var(--r-sm);
-            transition: background var(--ease);
-        }
-
-        .user-widget:hover { background: rgba(255,255,255,0.06); cursor: default; }
-
-        .user-avatar {
-            width: 30px; height: 30px;
+            right: 12px; width: 6px; height: 6px;
+            background: var(--primary);
             border-radius: 50%;
-            background: var(--blue);
-            color: white;
-            font-size: 11px;
-            font-weight: 600;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-            border: none;
-            box-shadow: none;
-        }
-
-        .user-info { flex: 1; min-width: 0; }
-
-        .user-name {
-            font-size: 12.5px;
-            font-weight: 500;
-            color: rgba(255,255,255,0.88);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 1.4;
-        }
-
-        .user-role {
-            font-size: 11px;
-            color: rgba(255,255,255,0.32);
-            line-height: 1.3;
         }
 
         /* ── MAIN CONTENT ───────────────────────────────────────────── */
-        .main-content {
+        .main-wrapper {
             margin-left: var(--sb-w);
             min-height: 100vh;
             display: flex;
@@ -301,792 +156,304 @@
         }
 
         /* ── TOPBAR ─────────────────────────────────────────────────── */
-        .topbar {
+        .top-nova {
             height: var(--tb-h);
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
+            background: rgba(248, 250, 252, 0.7);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 28px;
+            padding: 0 32px;
             position: sticky;
-            top: 0;
-            z-index: 50;
-            /* No blur, no glass — clean white */
-            backdrop-filter: none;
-            box-shadow: none;
+            top: 0; z-index: 900;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
         }
 
-        /* Kill animated stripe */
-        .topbar::before { display: none !important; }
-
-        .page-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--t1);
-            margin: 0;
-            letter-spacing: -0.01em;
-            display: block;
-        }
-
-        /* Kill dot accent */
-        .page-title::before { display: none !important; }
-
-        .topbar-actions {
+        .search-nova {
+            background: white;
+            border-radius: 14px;
+            padding: 8px 16px;
             display: flex;
             align-items: center;
             gap: 10px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            width: 300px;
+            transition: all 0.3s ease;
         }
 
-        .role-badge {
-            display: inline-flex;
+        .search-nova:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+            width: 340px;
+        }
+
+        .search-nova input {
+            border: none; outline: none; background: transparent; font-size: 0.9rem; width: 100%;
+        }
+
+        .user-pill {
+            display: flex;
             align-items: center;
-            gap: 5px;
-            padding: 3px 10px;
-            border-radius: 99px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.04em;
+            gap: 12px;
+            background: white;
+            padding: 6px 6px 6px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--nova-shadow);
+        }
+
+        .avatar-nova {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.85rem;
+        }
+
+        /* ── CARDS NOVA ─────────────────────────────────────────────── */
+        .card-nova {
+            background: var(--surface-nova);
+            backdrop-filter: var(--nova-glass);
+            border: 1px solid var(--border-nova);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--nova-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+        }
+
+        .card-nova:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .stat-icon-nova {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* ── TABLES NOVA ────────────────────────────────────────────── */
+        .table-nova {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+
+        .table-nova th {
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            border: none;
+            letter-spacing: 0.05em;
+            color: var(--text-nova-muted);
         }
 
-        .role-badge.admin {
-            background: var(--blue-bg);
-            color: var(--blue-h);
+        .table-nova tr {
+            background: white;
+            transition: all 0.3s ease;
         }
 
-        .role-badge.medecin {
-            background: var(--teal-bg);
-            color: var(--teal);
+        .table-nova td {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(226, 232, 240, 0.5);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
         }
 
-        .logout-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: var(--r-sm);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--t3);
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            transition: background var(--ease), color var(--ease), border-color var(--ease);
+        .table-nova td:first-child { border-left: 1px solid rgba(226, 232, 240, 0.5); border-radius: 16px 0 0 16px; }
+        .table-nova td:last-child { border-right: 1px solid rgba(226, 232, 240, 0.5); border-radius: 0 16px 16px 0; }
+
+        .table-nova tr:hover {
+            transform: scale(1.01);
+            box-shadow: var(--nova-shadow);
+            z-index: 10;
+        }
+
+        /* ── BUTTONS NOVA ───────────────────────────────────────────── */
+        .btn-nova {
+            padding: 10px 24px;
+            border-radius: 14px;
+            font-weight: 700;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
+            border: none;
+            font-size: 0.9rem;
         }
 
-        .logout-btn:hover {
-            background: var(--red-bg);
-            color: var(--red);
-            border-color: #FECACA;
-            transform: none;
-            box-shadow: none;
+        .btn-nova-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 8px 20px var(--primary-glow);
         }
 
-        /* ── CONTENT CONTAINER ──────────────────────────────────────── */
-        .content-container {
-            padding: 28px 32px;
-            flex: 1;
-            animation: fade-up 0.2s ease both;
+        .btn-nova-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px var(--primary-glow);
+            color: white;
         }
 
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(6px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .badge-nova {
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
         }
 
-        /* ── CARDS ──────────────────────────────────────────────────── */
+        /* ── UTILS ─────────────────────────────────────────────────── */
+        .page-header-nova {
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-header-nova h1 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.04em;
+        }
+
+        /* ── GLOBAL OVERRIDES (THE POWER OF NOVA) ──────────────────── */
         .card {
-            background: var(--surface);
-            border: 1px solid var(--border) !important;
-            border-radius: var(--r-lg) !important;
-            box-shadow: var(--e1) !important;
-            transition: box-shadow var(--ease) !important;
-            overflow: hidden;
+            background: var(--surface-nova) !important;
+            backdrop-filter: var(--nova-glass) !important;
+            border: 1px solid var(--border-nova) !important;
+            border-radius: 24px !important;
+            box-shadow: var(--nova-shadow) !important;
+            transition: all 0.4s ease !important;
         }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05); }
+        
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)) !important; border: none !important; border-radius: 14px !important; padding: 10px 24px !important; font-weight: 700 !important; box-shadow: 0 8px 20px var(--primary-glow) !important; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 24px var(--primary-glow) !important; }
+        
+        .table { --bs-table-bg: transparent !important; }
+        .table thead th { background: transparent !important; border-bottom: 2px solid rgba(226, 232, 240, 0.8) !important; color: var(--text-nova-muted) !important; font-size: 0.75rem !important; text-transform: uppercase !important; letter-spacing: 0.05em !important; padding: 16px 20px !important; }
+        .table tbody td { padding: 16px 20px !important; vertical-align: middle !important; border-bottom: 1px solid rgba(226, 232, 240, 0.4) !important; background: transparent !important; }
+        
+        .form-control, .form-select { border-radius: 14px !important; border: 1px solid rgba(226, 232, 240, 0.8) !important; padding: 12px 18px !important; background: white !important; transition: all 0.3s ease !important; }
+        .form-control:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 4px var(--primary-glow) !important; }
 
-        .card:hover { box-shadow: var(--e2) !important; }
+        .badge { padding: 6px 12px !important; border-radius: 10px !important; font-weight: 700 !important; font-size: 0.75rem !important; text-transform: uppercase !important; }
+        .bg-primary { background: var(--primary-glow) !important; color: var(--primary) !important; }
+        
+        /* Sidebar Scrollbar */
+        .sidebar-nav::-webkit-scrollbar { width: 4px; }
+        .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.05); border-radius: 10px; }
 
-        .card-header {
-            background: var(--surface) !important;
-            border-bottom: 1px solid var(--border) !important;
-            padding: 14px 20px !important;
-            position: static !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 8px !important;
-        }
+        /* More Global Overrides */
+        .rounded-pill { border-radius: 100px !important; }
+        .input-group.rounded-pill { padding: 4px; background: white; border: 1px solid rgba(226, 232, 240, 0.8); }
+        .input-group.rounded-pill .form-control { border: none !important; }
+        .input-group.rounded-pill .btn { border-radius: 100px !important; }
 
-        /* Kill old left accent bar */
-        .card-header::before { display: none !important; }
-
-        .card-header i {
-            color: var(--t4) !important;
-            font-size: 14px !important;
-        }
-
-        /* Text inside card headers */
-        .card-header h4,
-        .card-header h5,
-        .card-header .fw-bold {
-            font-family: 'Sora', sans-serif !important;
-            font-size: 14px !important;
-            font-weight: 600 !important;
-            color: var(--t1) !important;
-            letter-spacing: -0.01em !important;
-        }
-
-        .card-body { padding: 20px; }
-
-        .card-footer {
-            background: var(--bg) !important;
-            border-top: 1px solid var(--border) !important;
-            padding: 12px 20px !important;
-        }
-
-        /* ── STAT CARDS ─────────────────────────────────────────────── */
-        /*
-         * White cards with a coloured top border.
-         * Numbers are dark text — no more candy gradients.
-         * These are data surfaces, not decorations.
-         */
-        .stat-card {
-            padding: 20px !important;
-            border-radius: var(--r-lg) !important;
-            background: var(--surface) !important;
-            border: 1px solid var(--border) !important;
-            box-shadow: var(--e1) !important;
-            color: var(--t1) !important;
-            position: relative;
-            overflow: hidden;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: flex-start !important;
-            gap: 4px;
-            min-height: 108px !important;
-            /* No bounce, no float */
-            transition: box-shadow var(--ease), border-color var(--ease) !important;
-        }
-
-        /* Kill glass shimmer */
-        .stat-card::after { display: none !important; }
-
-        .stat-card:hover {
-            box-shadow: var(--e2) !important;
-            border-color: var(--border-2) !important;
-            transform: none !important;
-        }
-
-        /* Watermark icon */
-        .stat-icon {
-            position: absolute !important;
-            right: 14px !important;
-            bottom: 10px !important;
-            font-size: 38px !important;
-            opacity: 0.07 !important;
-            transform: none !important;
-            transition: opacity var(--ease) !important;
-        }
-
-        .stat-card:hover .stat-icon {
-            opacity: 0.12 !important;
-            transform: none !important;
-        }
-
-        .stat-value {
-            font-family: 'Sora', sans-serif !important;
-            font-size: 26px !important;
-            font-weight: 700 !important;
-            line-height: 1 !important;
-            letter-spacing: -0.04em !important;
-            color: var(--t1) !important;
-            text-shadow: none !important;
-            margin-bottom: 0 !important;
-        }
-
-        .stat-label {
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.08em !important;
-            color: var(--t4) !important;
-            opacity: 1 !important;
-        }
-
-        /* Coloured top borders — one per metric type */
-        .stat-bg-patients      { border-top: 3px solid var(--blue)   !important; }
-        .stat-bg-medecins      { border-top: 3px solid #0891B2        !important; }
-        .stat-bg-rdv           { border-top: 3px solid #D97706        !important; }
-        .stat-bg-consultations { border-top: 3px solid var(--violet)  !important; }
-        .stat-bg-factures      { border-top: 3px solid var(--rose)    !important; }
-        .stat-bg-revenus       { border-top: 3px solid var(--green)   !important; }
-
-        /* Watermark icon colour per type */
-        .stat-bg-patients      .stat-icon { color: var(--blue)  !important; }
-        .stat-bg-medecins      .stat-icon { color: #0891B2       !important; }
-        .stat-bg-rdv           .stat-icon { color: #D97706       !important; }
-        .stat-bg-consultations .stat-icon { color: var(--violet) !important; }
-        .stat-bg-factures      .stat-icon { color: var(--rose)   !important; }
-        .stat-bg-revenus       .stat-icon { color: var(--green)  !important; }
-
-        /* ── TABLES ─────────────────────────────────────────────────── */
-        .table-responsive { border-radius: 0; overflow-x: auto; }
-        .table { margin-bottom: 0; font-size: 13.5px; }
-
-        .table thead th {
-            background: var(--bg) !important;
-            padding: 10px 16px !important;
-            font-family: 'Inter', sans-serif !important;
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.07em !important;
-            color: var(--t4) !important;
-            border: none !important;
-            border-bottom: 1px solid var(--border) !important;
-            white-space: nowrap;
-        }
-
-        .table tbody td {
-            padding: 12px 16px !important;
-            vertical-align: middle !important;
-            font-size: 13.5px !important;
-            color: var(--t2) !important;
-            border-bottom: 1px solid var(--border) !important;
-            transition: background var(--ease);
-        }
-
-        .table tbody tr:last-child td { border-bottom: none !important; }
-
-        .table-hover tbody tr:hover td {
-            background: #F9FAFB !important;
-        }
-
-        /* ── BUTTONS ────────────────────────────────────────────────── */
-        .btn {
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 6px !important;
-            padding: 7px 14px !important;
-            font-family: 'Inter', sans-serif !important;
-            font-size: 13px !important;
-            font-weight: 500 !important;
-            line-height: 1.4 !important;
-            border-radius: var(--r-md) !important;
-            cursor: pointer !important;
-            transition: background var(--ease), color var(--ease), border-color var(--ease) !important;
-            overflow: visible !important;
-            position: static !important;
-            text-decoration: none !important;
-        }
-
-        .btn::after { display: none !important; }
-
-        /* Primary — solid blue */
-        .btn-primary {
-            background: var(--blue) !important;
-            border: 1px solid var(--blue) !important;
-            color: #fff !important;
-            box-shadow: none !important;
-        }
-        .btn-primary:hover, .btn-primary:focus {
-            background: var(--blue-h) !important;
-            border-color: var(--blue-h) !important;
-            color: #fff !important;
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Outline variants */
-        .btn-outline-primary {
-            background: transparent !important;
-            border: 1px solid var(--blue) !important;
-            color: var(--blue) !important;
-        }
-        .btn-outline-primary:hover {
-            background: var(--blue-bg) !important;
-            color: var(--blue) !important;
-            transform: none !important;
-        }
-
-        .btn-outline-secondary {
-            background: transparent !important;
-            border: 1px solid var(--border) !important;
-            color: var(--t3) !important;
-        }
-        .btn-outline-secondary:hover {
-            background: var(--bg) !important;
-            border-color: var(--border-2) !important;
-            color: var(--t2) !important;
-            transform: none !important;
-        }
-
-        .btn-outline-info {
-            background: transparent !important;
-            border: 1px solid #BAE6FD !important;
-            color: var(--sky) !important;
-        }
-        .btn-outline-info:hover {
-            background: var(--sky-bg) !important;
-            transform: none !important;
-        }
-
-        .btn-outline-warning {
-            background: transparent !important;
-            border: 1px solid #FDE68A !important;
-            color: var(--amber) !important;
-        }
-        .btn-outline-warning:hover {
-            background: var(--amber-bg) !important;
-            transform: none !important;
-        }
-
-        .btn-outline-danger {
-            background: transparent !important;
-            border: 1px solid #FECACA !important;
-            color: var(--red) !important;
-        }
-        .btn-outline-danger:hover {
-            background: var(--red-bg) !important;
-            transform: none !important;
-        }
-
-        /* Solid variants */
-        .btn-warning {
-            background: #F59E0B !important;
-            border: 1px solid #F59E0B !important;
-            color: #fff !important;
-            box-shadow: none !important;
-        }
-        .btn-warning:hover {
-            background: var(--amber) !important;
-            border-color: var(--amber) !important;
-            color: #fff !important;
-            transform: none !important;
-        }
-
-        .btn-danger {
-            background: var(--red) !important;
-            border: 1px solid var(--red) !important;
-            color: #fff !important;
-            box-shadow: none !important;
-        }
-        .btn-danger:hover {
-            background: #B91C1C !important;
-            border-color: #B91C1C !important;
-            color: #fff !important;
-            transform: none !important;
-        }
-
-        .btn-light, .btn-white {
-            background: var(--bg) !important;
-            border: 1px solid var(--border) !important;
-            color: var(--t2) !important;
-        }
-        .btn-light:hover, .btn-white:hover {
-            background: #E9EBF0 !important;
-            color: var(--t1) !important;
-            transform: none !important;
-        }
-
-        .btn-dark {
-            background: var(--t1) !important;
-            border: 1px solid var(--t1) !important;
-            color: #fff !important;
-        }
-        .btn-dark:hover {
-            background: #1F2937 !important;
-            transform: none !important;
-        }
-
-        /* Sizes */
-        .btn-sm {
-            padding: 5px 10px !important;
-            font-size: 12px !important;
-            border-radius: var(--r-sm) !important;
-            gap: 5px !important;
-        }
-        .btn-lg {
-            padding: 10px 20px !important;
-            font-size: 14px !important;
-        }
-
-        /* Icon button (used in action columns) */
-        .btn-icon-hover {
-            width: 32px !important;
-            height: 32px !important;
-            padding: 0 !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background: transparent !important;
-            border: 1px solid transparent !important;
-            border-radius: var(--r-sm) !important;
-            cursor: pointer !important;
-            transition: background var(--ease), border-color var(--ease) !important;
-        }
-        .btn-icon-hover:hover {
-            background: var(--bg) !important;
-            border-color: var(--border) !important;
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
-        /* ── ALERTS ─────────────────────────────────────────────────── */
-        .alert {
-            border: none !important;
-            border-radius: var(--r-md) !important;
-            padding: 12px 16px !important;
-            font-size: 13px !important;
-            font-weight: 500 !important;
-            box-shadow: none !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 10px !important;
-        }
-
-        .alert-success {
-            background: var(--green-bg) !important;
-            color: #166534 !important;
-            border-left: 3px solid var(--green) !important;
-        }
-        .alert-danger {
-            background: var(--red-bg) !important;
-            color: #991B1B !important;
-            border-left: 3px solid var(--red) !important;
-        }
-        .alert-warning {
-            background: var(--amber-bg) !important;
-            color: #92400E !important;
-            border-left: 3px solid #F59E0B !important;
-        }
-        .alert-info {
-            background: var(--sky-bg) !important;
-            color: #075985 !important;
-            border-left: 3px solid #0EA5E9 !important;
-        }
-
-        /* ── FORMS ──────────────────────────────────────────────────── */
-        .form-control,
-        .form-select {
-            border-radius: var(--r-sm) !important;
-            border: 1px solid var(--border-2) !important;
-            padding: 8px 12px !important;
-            font-size: 13.5px !important;
-            font-family: 'Inter', sans-serif !important;
-            color: var(--t1) !important;
-            background: var(--surface) !important;
-            transition: border-color var(--ease), box-shadow var(--ease) !important;
-            height: auto !important;
-            line-height: 1.5 !important;
-        }
-
-        .form-control::placeholder { color: var(--t4) !important; }
-
-        .form-control:focus,
-        .form-select:focus {
-            border-color: var(--blue) !important;
-            box-shadow: 0 0 0 3px var(--blue-ring) !important;
-            outline: none !important;
-            background: var(--surface) !important;
-        }
-
-        .form-control.is-invalid,
-        .form-select.is-invalid {
-            border-color: var(--red) !important;
-            box-shadow: 0 0 0 3px rgba(220,38,38,0.1) !important;
-        }
-
-        .form-label {
-            font-size: 13px !important;
-            font-weight: 500 !important;
-            color: var(--t1) !important;
-            margin-bottom: 5px !important;
-            display: block;
-        }
-
-        .input-group-text {
-            background: var(--bg) !important;
-            border: 1px solid var(--border-2) !important;
-            color: var(--t3) !important;
-            font-size: 13px !important;
-        }
-
-        textarea.form-control { resize: vertical; min-height: 88px; }
-
-        /* ── BADGES ─────────────────────────────────────────────────── */
-        .badge {
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            padding: 3px 8px !important;
-            border-radius: var(--r-xs) !important;
-            letter-spacing: 0.02em !important;
-        }
-
-        .badge.rounded-pill { border-radius: 99px !important; padding: 3px 10px !important; }
-
-        /* Semantic status colours */
-        .bg-success { background: var(--green-bg) !important; color: var(--green) !important; }
-        .bg-warning { background: var(--amber-bg) !important; color: var(--amber) !important; }
-        .bg-danger  { background: var(--red-bg)   !important; color: var(--red)   !important; }
-        .bg-info    { background: var(--sky-bg)   !important; color: var(--sky)   !important; }
-        .bg-light   { background: var(--bg)       !important; color: var(--t2)    !important; }
-        .bg-dark    { background: var(--t1)       !important; color: #fff         !important; }
-
-        /* ── PAGINATION ─────────────────────────────────────────────── */
-        .pagination { gap: 3px !important; }
-
-        .page-link {
-            border: 1px solid var(--border) !important;
-            border-radius: var(--r-sm) !important;
-            padding: 6px 12px !important;
-            font-size: 13px !important;
-            font-weight: 500 !important;
-            color: var(--t3) !important;
-            background: var(--surface) !important;
-            transition: background var(--ease), color var(--ease), border-color var(--ease) !important;
-            min-width: 34px;
-            text-align: center;
-        }
-
-        .page-link:hover {
-            background: var(--blue-bg) !important;
-            border-color: var(--blue) !important;
-            color: var(--blue) !important;
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
-        .page-item.active .page-link {
-            background: var(--blue) !important;
-            border-color: var(--blue) !important;
-            color: #fff !important;
-            box-shadow: none !important;
-        }
-
-        .page-item.disabled .page-link {
-            background: var(--bg) !important;
-            color: var(--t4) !important;
-            border-color: var(--border) !important;
-        }
-
-        /* ── NAV PILLS (detail page tabs) ───────────────────────────── */
-        .nav-pills .nav-link {
-            border-radius: var(--r-sm) !important;
-            font-size: 13px !important;
-            font-weight: 500 !important;
-            padding: 7px 14px !important;
-            color: var(--t3) !important;
-            transition: background var(--ease) !important;
-        }
-
-        .nav-pills .nav-link:hover {
-            background: var(--bg) !important;
-            color: var(--t2) !important;
-        }
-
-        .nav-pills .nav-link.active {
-            background: var(--blue) !important;
-            color: #fff !important;
-            box-shadow: none !important;
-        }
-
-        /* ── DOCTOR CARDS (admin/medecins/index) ────────────────────── */
-        .card-medecin {
-            border: 1px solid var(--border) !important;
-            box-shadow: var(--e1) !important;
-            transition: box-shadow var(--ease), border-color var(--ease), transform var(--ease) !important;
-        }
-
-        .card-medecin:hover {
-            transform: translateY(-3px) !important;
-            box-shadow: var(--e3) !important;
-            border-color: var(--border-2) !important;
-        }
-
-        .card-overlay {
-            background: var(--bg) !important;
-            height: 60px !important;
-        }
-
-        /* ── UTILITIES ──────────────────────────────────────────────── */
-        .x-small          { font-size: 11.5px !important; }
-        .bg-primary-light { background: var(--blue-bg)   !important; }
-        .bg-success-light { background: var(--green-bg)  !important; }
-        .bg-warning-light { background: var(--amber-bg)  !important; }
-        .bg-danger-light  { background: var(--red-bg)    !important; }
-        .bg-info-light    { background: var(--sky-bg)    !important; }
-        .text-primary     { color: var(--blue)           !important; }
-        .text-success     { color: var(--green)          !important; }
-        .text-warning     { color: var(--amber)          !important; }
-        .text-danger      { color: var(--red)            !important; }
-        .text-info        { color: var(--sky)            !important; }
-        .text-muted       { color: var(--t3)             !important; }
-        .text-secondary   { color: var(--t2)             !important; }
-        .text-dark        { color: var(--t1)             !important; }
-
-        /* Divider helper */
-        .border-bottom { border-bottom: 1px solid var(--border) !important; }
-        .border-top    { border-top:    1px solid var(--border) !important; }
-
-        /* ── RESPONSIVE ─────────────────────────────────────────────── */
+        /* Responsive */
         @media (max-width: 992px) {
-            .sidebar           { transform: translateX(-100%); }
-            .main-content      { margin-left: 0; }
-            .topbar            { padding: 0 16px; }
-            .content-container { padding: 20px 16px; }
+            .sidebar { transform: translateX(-100%); width: var(--sb-w); }
+            .sidebar.active { transform: translateX(0); box-shadow: 20px 0 60px rgba(0,0,0,0.1); }
+            .main-wrapper { margin-left: 0; }
+            .top-nova { padding: 0 16px; }
         }
     </style>
-    @yield('styles')
 </head>
-
 <body>
-
-    <!-- Sidebar -->
     <aside class="sidebar">
-        <a href="#" class="sidebar-brand">
-            <div class="brand-logo">
+        <a href="{{ route('dashboard') }}" class="sidebar-brand">
+            <div class="logo-nova">
                 <i class="bi bi-hospital"></i>
             </div>
-            <span class="brand-name">MediCore<span style="color: var(--accent)">Pro</span></span>
+            <span class="brand-text">MediCore Nova</span>
         </a>
 
-        <nav class="sidebar-nav">
+        <div class="sidebar-nav">
             @if(auth()->user()->isAdmin())
-                <span class="nav-section-title">Principal</span>
-                <a href="{{ route('admin.dashboard') }}"
-                    class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <i class="bi bi-grid"></i>
-                    Tableau de bord
-                </a>
-
-                <span class="nav-section-title">Gestion</span>
-                <a href="{{ route('admin.patients.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.patients.*') ? 'active' : '' }}">
-                    <i class="bi bi-people"></i>
-                    Patients
-                </a>
-                <a href="{{ route('admin.medecins.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.medecins.*') ? 'active' : '' }}">
-                    <i class="bi bi-person-badge"></i>
-                    Corps Médical
-                </a>
-                <a href="{{ route('admin.rendez-vous.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.rendez-vous.*') ? 'active' : '' }}">
-                    <i class="bi bi-calendar"></i>
-                    Rendez-vous
-                </a>
-
-                <span class="nav-section-title">Activité</span>
-                <a href="{{ route('admin.consultations.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.consultations.*') ? 'active' : '' }}">
-                    <i class="bi bi-heart-pulse"></i>
-                    Consultations
-                </a>
-                <a href="{{ route('admin.ordonnances.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.ordonnances.*') ? 'active' : '' }}">
-                    <i class="bi bi-file-earmark-medical"></i>
-                    Ordonnances
-                </a>
-
-                <span class="nav-section-title">Finance</span>
-                <a href="{{ route('admin.factures.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.factures.*') ? 'active' : '' }}">
-                    <i class="bi bi-receipt"></i>
-                    Facturation
-                </a>
-            @else
-                <span class="nav-section-title">Espace Praticien</span>
-                <a href="{{ route('medecin.dashboard') }}"
-                    class="nav-link {{ request()->routeIs('medecin.dashboard') ? 'active' : '' }}">
-                    <i class="bi bi-house"></i>
-                    Dashboard
-                </a>
-                <a href="{{ route('medecin.patients.index') }}"
-                    class="nav-link {{ request()->routeIs('medecin.patients.*') ? 'active' : '' }}">
-                    <i class="bi bi-people"></i>
-                    Mes Patients
-                </a>
-                <a href="{{ route('medecin.rendez-vous.index') }}"
-                    class="nav-link {{ request()->routeIs('medecin.rendez-vous.*') ? 'active' : '' }}">
-                    <i class="bi bi-calendar-check"></i>
-                    Mon Agenda
-                </a>
-                <a href="{{ route('medecin.consultations.index') }}"
-                    class="nav-link {{ request()->routeIs('medecin.consultations.*') ? 'active' : '' }}">
-                    <i class="bi bi-clipboard-pulse"></i>
-                    Consultations
-                </a>
-                <a href="{{ route('medecin.ordonnances.index') }}"
-                    class="nav-link {{ request()->routeIs('medecin.ordonnances.*') ? 'active' : '' }}">
-                    <i class="bi bi-file-medical"></i>
-                    Ordonnances
-                </a>
-            @endif
-        </nav>
-
-        <div class="sidebar-footer">
-            <a href="#" class="text-decoration-none">
-                <div class="user-widget">
-                    <div class="user-avatar">
-                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                    </div>
-                    <div class="user-info">
-                        <div class="user-name">{{ auth()->user()->name }}</div>
-                        <div class="user-role">{{ auth()->user()->isAdmin() ? 'Administrateur' : 'Praticien' }}</div>
-                    </div>
-                    <i class="bi bi-gear" style="color: rgba(255,255,255,0.25); font-size: 13px; margin-left: auto;"></i>
+                <div class="nav-section">
+                    <span class="nav-label">Administration</span>
+                    <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                        <i class="bi bi-grid-1x2-fill"></i> Dashboard
+                    </a>
+                    <a href="{{ route('admin.medecins.index') }}" class="nav-item {{ request()->routeIs('admin.medecins.*') ? 'active' : '' }}">
+                        <i class="bi bi-person-badge"></i> Médecins
+                    </a>
+                    <a href="{{ route('admin.patients.index') }}" class="nav-item {{ request()->routeIs('admin.patients.*') ? 'active' : '' }}">
+                        <i class="bi bi-people"></i> Patients
+                    </a>
                 </div>
-            </a>
+                <div class="nav-section">
+                    <span class="nav-label">Opérations</span>
+                    <a href="{{ route('admin.rendez-vous.index') }}" class="nav-item {{ request()->routeIs('admin.rendez-vous.*') ? 'active' : '' }}">
+                        <i class="bi bi-calendar-check"></i> Rendez-vous
+                    </a>
+                    <a href="{{ route('admin.consultations.index') }}" class="nav-item {{ request()->routeIs('admin.consultations.*') ? 'active' : '' }}">
+                        <i class="bi bi-clipboard-pulse"></i> Consultations
+                    </a>
+                    <a href="{{ route('admin.factures.index') }}" class="nav-item {{ request()->routeIs('admin.factures.*') ? 'active' : '' }}">
+                        <i class="bi bi-receipt"></i> Facturation
+                    </a>
+                </div>
+            @else
+                <div class="nav-section">
+                    <span class="nav-label">Espace Médecin</span>
+                    <a href="{{ route('medecin.dashboard') }}" class="nav-item {{ request()->routeIs('medecin.dashboard') ? 'active' : '' }}">
+                        <i class="bi bi-grid-1x2-fill"></i> Dashboard
+                    </a>
+                    <a href="{{ route('medecin.patients.index') }}" class="nav-item {{ request()->routeIs('medecin.patients.*') ? 'active' : '' }}">
+                        <i class="bi bi-people"></i> Mes Patients
+                    </a>
+                    <a href="{{ route('medecin.rendez-vous.index') }}" class="nav-item {{ request()->routeIs('medecin.rendez-vous.*') ? 'active' : '' }}">
+                        <i class="bi bi-calendar-check"></i> Mon Agenda
+                    </a>
+                    <a href="{{ route('medecin.consultations.index') }}" class="nav-item {{ request()->routeIs('medecin.consultations.*') ? 'active' : '' }}">
+                        <i class="bi bi-clipboard2-pulse"></i> Mes Consultations
+                    </a>
+                </div>
+            @endif
+        </div>
+
+        <div class="mt-auto pt-4">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-item w-100 border-0 bg-transparent text-danger">
+                    <i class="bi bi-box-arrow-right"></i> Déconnexion
+                </button>
+            </form>
         </div>
     </aside>
 
-    <!-- Main -->
-    <main class="main-content">
-        <header class="topbar">
-            <h1 class="page-title">@yield('page-title', 'Tableau de bord')</h1>
+    <main class="main-wrapper">
+        <header class="top-nova">
+            <div class="search-nova">
+                <i class="bi bi-search text-muted"></i>
+                <input type="text" placeholder="Rechercher un patient, un acte...">
+            </div>
 
-            <div class="topbar-actions">
-                <span class="role-badge {{ auth()->user()->isAdmin() ? 'admin' : 'medecin' }}">
-                    <i class="bi bi-shield-check"></i>
-                    {{ auth()->user()->isAdmin() ? 'Admin' : 'Praticien' }}
-                </span>
-
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="logout-btn">
-                        <i class="bi bi-box-arrow-right"></i>
-                        Déconnexion
-                    </button>
-                </form>
+            <div class="d-flex align-items-center gap-4">
+                <div class="user-pill">
+                    <div class="d-flex flex-column text-end">
+                        <span class="fw-bold small">{{ auth()->user()->name }}</span>
+                        <span class="text-muted" style="font-size: 10px; text-transform: uppercase; font-weight: 700;">{{ auth()->user()->role }}</span>
+                    </div>
+                    <div class="avatar-nova">
+                        {{ substr(auth()->user()->name, 0, 1) }}
+                    </div>
+                </div>
             </div>
         </header>
 
-        <div class="content-container">
-            @if(session('success'))
-                <div class="alert alert-success mb-4" role="alert">
-                    <i class="bi bi-check-circle-fill"></i>
-                    <div>{{ session('success') }}</div>
-                </div>
-            @endif
-
-            @if(session('error'))
-                <div class="alert alert-danger mb-4" role="alert">
-                    <i class="bi bi-exclamation-triangle-fill"></i>
-                    <div>{{ session('error') }}</div>
-                </div>
-            @endif
-
+        <div class="content-nova p-4 p-lg-5">
             @yield('content')
         </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    @yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
-
 </html>

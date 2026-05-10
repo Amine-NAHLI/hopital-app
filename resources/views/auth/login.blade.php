@@ -1,245 +1,70 @@
 <x-guest-layout>
-    <style>
-        .login-page-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .login-flex-layout {
-            display: flex;
-            gap: 40px;
-            align-items: stretch;
-            justify-content: center;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .quick-access-side {
-            flex: 1;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .quick-access-header {
-            margin-bottom: 30px;
-        }
-
-        .quick-access-header h2 {
-            font-family: 'Sora', sans-serif;
-            color: white;
-            font-weight: 800;
-            font-size: 2rem;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-
-        .quick-access-header p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .user-grid-login {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .user-card-login {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 24px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .user-card-login:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .user-card-login .avatar-circle {
-            width: 54px;
-            height: 54px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-family: 'Sora', sans-serif;
-            font-size: 1.3rem;
-            color: white;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-        }
-
-        .user-card-login.admin .avatar-circle { background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
-        .user-card-login.medecin .avatar-circle { background: linear-gradient(135deg, #0891b2, #06b6d4); }
-
-        .user-card-login .info-box {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .user-card-login .name {
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .user-card-login .role {
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            margin-top: 4px;
-        }
-
-        .user-card-login.admin .role { color: #a78bfa; }
-
-        .user-card-login .email-tag {
-            color: rgba(255, 255, 255, 0.35);
-            font-size: 0.85rem;
-        }
-
-        .form-side {
-            flex: 0 0 470px;
-        }
-
-        @media (max-width: 1024px) {
-            .login-flex-layout {
-                flex-direction: column;
-                align-items: center;
-            }
-            .quick-access-side {
-                order: 2;
-                max-width: 470px;
-                text-align: center;
-            }
-            .quick-access-header { margin-top: 40px; }
-            .form-side {
-                order: 1;
-            }
-            .user-grid-login {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .user-grid-login {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-
-    <div class="login-page-container">
-        <div class="auth-logo">
-            <div class="logo-box">
+    <div class="auth-card-nova">
+        <div class="text-center mb-5">
+            <div class="logo-nova-guest">
                 <i class="bi bi-hospital"></i>
             </div>
-            <h1>MediCore<span style="color: var(--accent)">Pro</span></h1>
-            <p style="color: rgba(255, 255, 255, 0.42); font-size: 0.875rem; margin: 0;">Portail de Gestion Hospitalière</p>
+            <span class="brand-text-guest">MediCore Nova</span>
+            <p class="text-muted fw-500">Connectez-vous à l'avenir de la santé</p>
         </div>
 
-        <div class="login-flex-layout">
-            <!-- Sidebar Quick Access -->
-            <div class="quick-access-side">
-                <div class="quick-access-header">
-                    <h2>Accès Rapide</h2>
-                    <p>Choisissez un compte pour une connexion instantanée sans mot de passe.</p>
-                </div>
+        @if (session('status'))
+            <div class="alert alert-success border-0 rounded-4 mb-4" style="background: var(--primary-glow); color: var(--primary);">
+                {{ session('status') }}
+            </div>
+        @endif
 
-                <div class="user-grid-login">
-                    @foreach($users as $user)
-                        <div class="user-card-login {{ $user->role }}" onclick="magicLogin('{{ $user->email }}', '{{ $user->id }}')">
-                            <div class="avatar-circle">
-                                {{ substr($user->name, 0, 1) }}
-                            </div>
-                            <div class="info-box">
-                                <span class="name">{{ $user->name }}</span>
-                                <span class="role">{{ $user->role }}</span>
-                            </div>
-                            <div class="email-tag">
-                                <i class="bi bi-person-check me-1"></i> {{ $user->email }}
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+        <form method="POST" action="{{ route('login') }}" id="loginForm">
+            @csrf
+            <input type="hidden" name="magic_id" id="magic_id" value="">
+
+            <div class="mb-4">
+                <label for="email">Adresse Email</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="nom@hopital.com">
+                @error('email')
+                    <div class="error-msg mt-2"><i class="bi bi-exclamation-triangle"></i> {{ $message }}</div>
+                @enderror
             </div>
 
-            <!-- Main Auth Card -->
-            <div class="form-side">
-                <div class="auth-card">
-                    <div class="mb-5 text-center">
-                        <h2 style="font-family: 'Sora', sans-serif; font-weight: 700; color: var(--secondary); margin-bottom: 8px;">Authentification</h2>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Connectez-vous à votre espace MediCore.</p>
-                    </div>
-
-                    @if (session('status'))
-                        <div class="mb-4 font-medium text-sm text-green-600" style="color: #16a34a; background: #f0fdf4; padding: 12px; border-radius: 8px;">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('login') }}" id="loginForm">
-                        @csrf
-                        <input type="hidden" name="magic_id" id="magic_id" value="">
-
-                        <div class="mb-4">
-                            <label for="email">Adresse Email</label>
-                            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="votre@email.com">
-                            @error('email')
-                                <div class="error-msg"><i class="bi bi-exclamation-circle me-1"></i> {{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="password">Mot de passe</label>
-                            <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="••••••••">
-                            @error('password')
-                                <div class="error-msg"><i class="bi bi-exclamation-circle me-1"></i> {{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="remember"> Se souvenir de moi
-                            </label>
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" style="color: var(--primary); text-decoration: none; font-size: 0.84rem; font-weight: 600;">Oublié ?</a>
-                            @endif
-                        </div>
-
-                        <button type="submit" class="btn-submit mb-4" id="submitBtn">
-                            Connexion au Portail <i class="bi bi-arrow-right-short ms-1"></i>
-                        </button>
-
-                        <div class="text-center">
-                            <div style="display: flex; align-items: center; margin: 20px 0; color: var(--text-muted); font-size: 0.8rem;">
-                                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
-                                <span style="padding: 0 10px;">Nouveau praticien ?</span>
-                                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
-                            </div>
-                            
-                            <a href="{{ route('register') }}" class="btn-submit" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); text-decoration: none;">
-                                Créer un compte <i class="bi bi-person-plus ms-1"></i>
-                            </a>
-                        </div>
-                    </form>
-                </div>
+            <div class="mb-4">
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="••••••••">
+                @error('password')
+                    <div class="error-msg mt-2"><i class="bi bi-exclamation-triangle"></i> {{ $message }}</div>
+                @enderror
             </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="remember"> <span class="ms-1">Rester connecté</span>
+                </label>
+                @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}" class="text-primary text-decoration-none fw-700 small">Oublié ?</a>
+                @endif
+            </div>
+
+            <button type="submit" class="btn-nova-auth" id="submitBtn">
+                Entrer dans le Portail <i class="bi bi-arrow-right-short ms-1"></i>
+            </button>
+
+            <div class="text-center mt-5">
+                <p class="text-muted small mb-3">Pas encore de compte ?</p>
+                <a href="{{ route('register') }}" class="btn w-100 border-0 fw-800 text-primary" style="background: var(--primary-glow); border-radius: 16px; padding: 14px;">
+                    Demander un accès praticien
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Quick Access Overlay (Optional but nice) -->
+    <div class="mt-5 text-center">
+        <p class="text-muted small fw-bold text-uppercase letter-spacing-1">Accès Rapide Démo</p>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            @foreach($users as $user)
+                <div class="cursor-pointer" onclick="magicLogin('{{ $user->email }}', '{{ $user->id }}')" title="{{ $user->name }} ({{ $user->role }})" style="width: 40px; height: 40px; border-radius: 12px; background: white; border: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.03); cursor: pointer; transition: all 0.3s ease;">
+                    {{ substr($user->name, 0, 1) }}
+                </div>
+            @endforeach
         </div>
     </div>
 
@@ -248,7 +73,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const email = urlParams.get('email');
             const magicId = urlParams.get('magic_id');
-            if (email) {
+            if (email && magicId) {
                 magicLogin(email, magicId);
             }
         });
@@ -259,21 +84,23 @@
             const submitBtn = document.getElementById('submitBtn');
             const magicIdInput = document.getElementById('magic_id');
             
-            // Fill values
             emailInput.value = email;
-            passwordInput.value = '********'; // Visual placeholder
+            passwordInput.value = '••••••••';
             magicIdInput.value = id;
             
-            // UI Feedback
-            emailInput.style.backgroundColor = 'rgba(79, 70, 229, 0.05)';
-            passwordInput.style.backgroundColor = 'rgba(79, 70, 229, 0.05)';
-            
-            submitBtn.style.transform = 'scale(1.02)';
-            submitBtn.innerHTML = 'Connexion Magique... <i class="bi bi-stars ms-1"></i>';
+            emailInput.style.borderColor = 'var(--primary)';
+            submitBtn.innerHTML = 'Synchronisation... <i class="bi bi-arrow-repeat spin"></i>';
+            submitBtn.style.opacity = '0.8';
             
             setTimeout(() => {
                 document.getElementById('loginForm').submit();
             }, 800);
         }
     </script>
+
+    <style>
+        .spin { animation: spin 1s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .cursor-pointer:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(99, 102, 241, 0.1) !important; border-color: var(--primary) !important; }
+    </style>
 </x-guest-layout>
