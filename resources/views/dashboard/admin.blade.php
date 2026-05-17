@@ -43,9 +43,10 @@
     @endforeach
 </div>
 
-<div class="row g-4">
-    <div class="col-lg-7">
-        <div class="card-nova">
+<div class="row g-4 mb-4">
+    <!-- Planning du jour -->
+    <div class="col-lg-8">
+        <div class="card-nova h-100">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-800 mb-0"><i class="bi bi-calendar2-week me-2 text-primary"></i> Planning du jour</h4>
                 <a href="{{ route('admin.rendez-vous.index') }}" class="text-primary small fw-700 text-decoration-none">Voir tout <i class="bi bi-arrow-right"></i></a>
@@ -92,32 +93,161 @@
         </div>
     </div>
 
-    <div class="col-lg-5">
+    <!-- Répartition RDV (Doughnut Chart) -->
+    <div class="col-lg-4">
+        <div class="card-nova h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-800 mb-0"><i class="bi bi-pie-chart me-2 text-primary"></i> Statuts RDV Hospitaliers</h4>
+            </div>
+            <div style="height: 250px;" class="d-flex justify-content-center align-items-center">
+                <canvas id="rdvStatusChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <!-- Évolution des Revenus (Line Chart) -->
+    <div class="col-lg-8">
+        <div class="card-nova h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-800 mb-0"><i class="bi bi-graph-up-arrow me-2 text-primary"></i> Analyse des Revenus Mensuels (DH)</h4>
+            </div>
+            <div style="height: 280px;">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Effectifs par Spécialité (Bar Chart) -->
+    <div class="col-lg-4">
+        <div class="card-nova h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-800 mb-0"><i class="bi bi-person-badge me-2 text-primary"></i> Spécialités Médicales</h4>
+            </div>
+            <div style="height: 280px;">
+                <canvas id="specialityChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Activité Récente -->
+    <div class="col-lg-12">
         <div class="card-nova">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="fw-800 mb-0"><i class="bi bi-activity me-2 text-primary"></i> Activité Récente</h4>
+                <h4 class="fw-800 mb-0"><i class="bi bi-activity me-2 text-primary"></i> Activité Récente du Système</h4>
             </div>
-            <div class="activity-timeline">
+            <div class="row">
                 @foreach($rdvRecents as $rdv)
-                    <div class="d-flex gap-3 mb-4">
-                        <div class="flex-shrink-0">
-                            <div class="p-2 rounded-4 bg-light">
-                                <i class="bi bi-chat-left-text text-primary"></i>
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex gap-3 align-items-center bg-light p-3 rounded-4">
+                            <div class="flex-shrink-0">
+                                <div class="p-2 rounded-4 bg-white shadow-sm">
+                                    <i class="bi bi-calendar-plus text-primary fs-5"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <p class="mb-1 fw-700 small">Nouveau rendez-vous pour <strong>{{ $rdv->patient->nom_complet }}</strong></p>
-                            <span class="text-muted extra-small" style="font-size: 11px;">
-                                <i class="bi bi-clock me-1"></i> {{ $rdv->created_at->diffForHumans() }}
-                            </span>
+                            <div>
+                                <p class="mb-1 fw-700 text-dark small">Nouveau rendez-vous planifié pour <strong>{{ $rdv->patient->nom_complet }}</strong></p>
+                                <span class="text-muted extra-small" style="font-size: 11px;">
+                                    <i class="bi bi-clock me-1"></i> {{ $rdv->created_at->diffForHumans() }}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-            <button class="btn w-100 bg-light fw-700 text-muted mt-3 py-3 border-0" style="border-radius: 16px;">
-                Afficher l'historique complet
-            </button>
         </div>
     </div>
 </div>
+
+<!-- Inclusion de Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- 1. Line Chart : Revenus ---
+        const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+        let gradientRevenue = ctxRevenue.createLinearGradient(0, 0, 0, 300);
+        gradientRevenue.addColorStop(0, 'rgba(16, 185, 129, 0.4)'); // Vert émeraude
+        gradientRevenue.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+
+        new Chart(ctxRevenue, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($monthsData['labels']) !!},
+                datasets: [{
+                    label: 'Revenus (DH)',
+                    data: {!! json_encode($monthsData['data']) !!},
+                    borderColor: '#10b981',
+                    backgroundColor: gradientRevenue,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#10b981',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: 'rgba(226, 232, 240, 0.6)', drawBorder: false }, ticks: { color: '#64748b' } },
+                    x: { grid: { display: false, drawBorder: false }, ticks: { color: '#64748b' } }
+                }
+            }
+        });
+
+        // --- 2. Doughnut Chart : Statut des RDV Globaux ---
+        const ctxRDVStatus = document.getElementById('rdvStatusChart').getContext('2d');
+        new Chart(ctxRDVStatus, {
+            type: 'doughnut',
+            data: {
+                labels: {!! json_encode($rdvStats['labels']) !!},
+                datasets: [{
+                    data: {!! json_encode($rdvStats['data']) !!},
+                    backgroundColor: ['#10b981', '#6366f1', '#f59e0b', '#ef4444'], // Vert, Indigo, Orange, Rouge
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 10, font: { family: 'Inter', size: 11 } } }
+                }
+            }
+        });
+
+        // --- 3. Bar Chart : Médecins par Spécialité ---
+        const ctxSpeciality = document.getElementById('specialityChart').getContext('2d');
+        new Chart(ctxSpeciality, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($specialityData['labels']) !!},
+                datasets: [{
+                    data: {!! json_encode($specialityData['data']) !!},
+                    backgroundColor: '#8b5cf6', // Violet
+                    borderRadius: 6,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: 'rgba(226, 232, 240, 0.6)', drawBorder: false }, ticks: { color: '#64748b', stepSize: 1 } },
+                    x: { grid: { display: false, drawBorder: false }, ticks: { color: '#64748b', font: { size: 10 } } }
+                }
+            }
+        });
+    });
+</script>
 @endsection

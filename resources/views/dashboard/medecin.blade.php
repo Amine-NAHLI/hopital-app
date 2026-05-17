@@ -42,8 +42,9 @@
 </div>
 
 <div class="row g-4">
-    <div class="col-lg-12">
-        <div class="card-nova">
+    <!-- Patients Attendus (Table) -->
+    <div class="col-lg-8">
+        <div class="card-nova h-100">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-800 mb-0"><i class="bi bi-clock me-2 text-primary"></i> Patients attendus aujourd'hui</h4>
             </div>
@@ -53,7 +54,7 @@
                         <tr>
                             <th>Patient</th>
                             <th>Heure</th>
-                            <th>Motif / Statut</th>
+                            <th>Statut</th>
                             <th class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -78,8 +79,8 @@
                                 </span>
                             </td>
                             <td class="text-end">
-                                <a href="{{ route('medecin.consultations.create', ['patient_id' => $rdv->patient_id, 'rendez_vous_id' => $rdv->id]) }}" class="btn-nova btn-nova-primary py-2 px-3 fs-7">
-                                    Démarrer la consultation
+                                <a href="{{ route('medecin.consultations.create', ['patient_id' => $rdv->patient_id, 'rendez_vous_id' => $rdv->id]) }}" class="btn-nova btn-nova-primary py-1 px-2 fs-7">
+                                    Démarrer
                                 </a>
                             </td>
                         </tr>
@@ -96,5 +97,130 @@
             </div>
         </div>
     </div>
+
+    <!-- Statut des RDV (Doughnut Chart) -->
+    <div class="col-lg-4">
+        <div class="card-nova h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-800 mb-0"><i class="bi bi-pie-chart me-2 text-primary"></i> Statuts RDV</h4>
+            </div>
+            <div style="height: 250px; position: relative;" class="d-flex justify-content-center align-items-center">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="row g-4 mt-1">
+    <!-- Activité (Line Chart) -->
+    <div class="col-lg-7">
+        <div class="card-nova h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-800 mb-0"><i class="bi bi-graph-up-arrow me-2 text-primary"></i> Activité de la Semaine</h4>
+            </div>
+            <div style="height: 280px;">
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Motifs (Bar Chart) -> Devenu Volume d'activité -->
+    <div class="col-lg-5">
+        <div class="card-nova h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-800 mb-0"><i class="bi bi-bar-chart-steps me-2 text-primary"></i> Volume d'Activité</h4>
+            </div>
+            <div style="height: 280px;">
+                <canvas id="motifsChart"></canvas>
+            </div>
+        </div>
+    </div><!-- Inclusion de Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- 1. Line Chart : Activité de la semaine ---
+        const ctxActivity = document.getElementById('activityChart').getContext('2d');
+        let gradientActivity = ctxActivity.createLinearGradient(0, 0, 0, 300);
+        gradientActivity.addColorStop(0, 'rgba(99, 102, 241, 0.4)');
+        gradientActivity.addColorStop(1, 'rgba(99, 102, 241, 0.0)');
+
+        new Chart(ctxActivity, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($chartData['labels']) !!},
+                datasets: [{
+                    label: 'Consultations',
+                    data: {!! json_encode($chartData['data']) !!},
+                    borderColor: '#6366f1',
+                    backgroundColor: gradientActivity,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#6366f1',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: 'rgba(226, 232, 240, 0.6)', drawBorder: false }, ticks: { color: '#64748b' } },
+                    x: { grid: { display: false, drawBorder: false }, ticks: { color: '#64748b' } }
+                }
+            }
+        });
+
+        // --- 2. Doughnut Chart : Statut des RDV ---
+        const ctxStatus = document.getElementById('statusChart').getContext('2d');
+        new Chart(ctxStatus, {
+            type: 'doughnut',
+            data: {
+                labels: {!! json_encode($chartStatus['labels']) !!},
+                datasets: [{
+                    data: {!! json_encode($chartStatus['data']) !!},
+                    backgroundColor: ['#10b981', '#6366f1', '#f59e0b', '#ef4444'], // Vert (Terminé), Indigo (Confirmé), Orange (En attente), Rouge (Annulé)
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20, font: { family: 'Inter', size: 12 } } }
+                }
+            }
+        });
+
+        // --- 3. Bar Chart : Volume d'Activité ---
+        const ctxMotifs = document.getElementById('motifsChart').getContext('2d');
+        new Chart(ctxMotifs, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($chartMotifs['labels']) !!},
+                datasets: [{
+                    label: 'Nombre total émis',
+                    data: {!! json_encode($chartMotifs['data']) !!},
+                    backgroundColor: '#0ea5e9',
+                    borderRadius: 6,
+                    barThickness: 24
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: 'rgba(226, 232, 240, 0.6)', drawBorder: false }, ticks: { color: '#64748b' } },
+                    x: { grid: { display: false, drawBorder: false }, ticks: { color: '#64748b', font: { size: 11 } } }
+                }
+            }
+        });
+    });
+</script>
 @endsection
