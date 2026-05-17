@@ -16,6 +16,7 @@ use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\OrdonnanceController;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AIAssistantController;
 
 Route::get('/', function () {
     $users = \App\Models\User::all();
@@ -55,4 +56,12 @@ Route::middleware(['auth', 'medecin'])->prefix('medecin')->name('medecin.')->gro
     Route::resource('rendez-vous', RendezVousController::class)->only(['index', 'show', 'edit', 'update']);
     Route::resource('consultations', ConsultationController::class)->only(['index', 'show', 'create', 'store']);
     Route::resource('ordonnances', OrdonnanceController::class)->only(['index', 'show', 'create', 'store']);
+
+    // Assistant IA Clinique
+    Route::get('/ai-assistant', [AIAssistantController::class, 'index'])->name('ai.assistant');
+    Route::post('/ai-assistant/analyze', [AIAssistantController::class, 'analyze'])->name('ai.analyze');
+    Route::post('/ai-assistant/generate-treatment', [AIAssistantController::class, 'generateTreatment'])->name('ai.generate_treatment');
+    Route::post('/ai-assistant/download-pdf', [AIAssistantController::class, 'downloadPdf'])->name('ai.download_pdf');
+    Route::get('/ai-assistant/patient-data/{id}', [AIAssistantController::class, 'getPatientData'])->name('ai.patient_data');
+    Route::get('/ai-assistant/consultation-data/{id}', [AIAssistantController::class, 'getConsultationData'])->name('ai.consultation_data');
 });

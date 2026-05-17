@@ -415,6 +415,12 @@
                         <i class="bi bi-clipboard2-pulse"></i> Mes Consultations
                     </a>
                 </div>
+                <div class="nav-section">
+                    <span class="nav-label" style="color: var(--primary);">Intelligence Artificielle</span>
+                    <a href="{{ route('medecin.ai.assistant') }}" class="nav-item {{ request()->routeIs('medecin.ai.*') ? 'active' : '' }}" style="background: var(--primary-glow); color: var(--primary); font-weight: 700;">
+                        <i class="bi bi-robot fill-current animate-pulse"></i> IA Clinique
+                    </a>
+                </div>
             @endif
         </div>
 
