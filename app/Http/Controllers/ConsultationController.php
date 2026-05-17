@@ -65,6 +65,11 @@ class ConsultationController extends Controller
             'prix' => 'required|numeric|min:0',
         ]);
 
+        $rendezVous = RendezVous::findOrFail($request->rendez_vous_id);
+        if ((int) $rendezVous->patient_id !== (int) $request->patient_id) {
+            return back()->withErrors(['patient_id' => 'Erreur de sécurité : Le patient sélectionné ne correspond pas au titulaire du rendez-vous choisi.'])->withInput();
+        }
+
         $consultation = Consultation::create($request->all());
 
         RendezVous::find($request->rendez_vous_id)
