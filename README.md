@@ -1,122 +1,169 @@
-# 🏥 MediCore Pro
+# 🏥 MediCore Nova — Enterprise Hospital Solution
 
-### Hospital Management System — Enterprise Edition
+<div align="center">
 
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
-[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen?style=for-the-badge)]()
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![ChartJS](https://img.shields.io/badge/Chart.js-4.x-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://www.chartjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind--CSS-3.x-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Status](https://img.shields.io/badge/Security-6H--Token--Expiration-emerald?style=for-the-badge&logo=securityscorecard&logoColor=white)]()
 
-<img src="banner.png" width="100%" alt="MediCore Pro Banner" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<p align="center">
+  <img src="banner.png" width="100%" alt="MediCore Nova Banner" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+</p>
 
----
+**MediCore Nova** est une solution clinique numérique de pointe. En combinant un backend robuste sous **Laravel 12 (MVC)** et un portail de certification autonome sous **React (Vite + Tailwind)**, elle résout les défis réels du management de la santé : automatisation par l'IA, dashboards décisionnels et cybersécurité documentaire.
 
-**MediCore Pro** est une solution logicielle de pointe conçue pour transformer la gestion hospitalière. En alliant une architecture robuste sous Laravel 12 et une interface utilisateur raffinée, elle offre aux établissements de santé un outil complet pour l'excellence opérationnelle.
-
-[Explorer la Documentation](#) · [Signaler un Bug](#) · [Demander une Feature](#)
+[🚀 Tester l'Application](#-installation--démarrage) · [📊 Voir les Diagrammes](#-conception--modélisation-uml) · [🔒 Portabilité QR Code](#-joyaux-techniques)
 
 </div>
 
-## 📑 Sommaire
+---
 
-- [Introduction](#-propos)
-- [Fonctionnalités Clés](#-fonctionnalités-clés)
-- [Architecture & Sécurité](#-architecture--sécurité)
-- [Stack Technique](#-stack-technique)
-- [Guide d'Installation](#-guide-dinstallation)
-- [Documentation Interne](#-documentation-interne)
+## 📑 Sommaire
+- [✨ Joyaux Techniques](#-joyaux-techniques)
+- [🎨 Fonctionnalités Phares](#-fonctionnalités-phares)
+- [📐 Conception & Modélisation UML](#-conception--modélisation-uml)
+- [🛠️ Stack Technique & Architecture](#️-stack-technique--architecture)
+- [🚀 Installation & Démarrage](#-installation--démarrage)
+- [👤 Comptes de Test (Démo)](#-comptes-de-test-démo)
 
 ---
 
-## 📋 À propos
+## 💎 Joyaux Techniques
 
-**MediCore Pro** ne se contente pas de gérer des données ; il optimise le parcours patient. De l'admission à la facturation finale, chaque étape est fluidifiée par des automatisations intelligentes et une ergonomie pensée pour le personnel soignant.
+### 1. 🤖 Assistant Clinique IA & E-Prescription
+Propulsé par les modèles d'IA générative (via **Groq Llama 3**), le médecin saisit ses notes en langage naturel. L'IA structure automatiquement le diagnostic, rédige l'ordonnance clinique et génère le livrable sous format **PDF sécurisé** via DomPDF.
 
-## ✨ Fonctionnalités Clés
+### 2. 🔒 Cybersécurité Documentaire : QR Code Expirable (6h Max)
+Pour contrer la fraude aux ordonnances, chaque PDF dispose d'un QR code vectoriel (SVG pure) intégrant un **token temporel cryptographique**. 
+* Scanné sur mobile, il redirige vers le portail autonome **React** hébergé sur GitHub Pages.
+* Si le scan s'effectue dans les **6 heures** suivant la création, le portail valide l'authenticité (affichage Vert Émeraude).
+* Si le scan a lieu **plus de 6 heures après**, le portail React applique une politique d'auto-destruction des données et affiche instantanément un **écran rouge d'alerte de sécurité**.
+
+### 3. 📊 Dashboards Décisionnels Réels (Chart.js)
+Fini les données statiques ! Les espaces Administrateur et Médecin intègrent désormais de véritables analyses décisionnelles interactives :
+* **Praticien :** Activité hebdomadaire, répartition des statuts des rendez-vous et analyse comparative de volume d'activité.
+* **Administrateur :** Évolution des revenus financiers mensuels (DH), effectifs par spécialité médicale et taux de fréquentation globale.
+
+---
+
+## 🎨 Fonctionnalités Phares
 
 ### 🏛️ Administration Centrale
+* **Dashboard Global** : Monitorer les flux financiers, médicaux et administratifs de l'établissement.
+* **Gestion des Praticiens** : Recrutement, attribution des spécialités et plannings.
+* **Annuaire Patients** : Centralisation des dossiers informatisés de santé.
 
-- **Analytics Avancés** : Monitoring en temps réel des KPIs hospitaliers via un dashboard dynamique.
-- **Gestion des Effectifs** : Contrôle total sur les comptes médecins, spécialisations et plannings.
-- **Audit & Transparence** : Suivi rigoureux de l'activité globale et de la facturation.
+### 👩‍⚕️ Espace Praticien (Médecin)
+* **Planning du jour** : Liste ordonnée des consultations et alertes d'urgences.
+* **Dossier Patient Unique (DPU)** : Accès instantané aux antécédents, allergies et anciennes consultations.
+* **Module Facturation** : Génération des récapitulatifs financiers instantanés.
 
-### 👩‍⚕️ Espace Praticien
+---
 
-- **Workflow Clinique** : Saisie intuitive des diagnostics, traitements et notes médicales.
-- **E-Prescription** : Module d'ordonnances sécurisé avec historique complet par patient.
-- **Gestion du Temps** : Vue calendrier intégrée pour les rendez-vous et urgences.
+## 📐 Conception & Modélisation UML
 
-### 📅 Gestion des Flux & Patients
+Les diagrammes de modélisation ci-dessous représentent la structure architecturale de l'écosystème **MediCore Nova** :
 
-- **Dossier Patient Unique (DPU)** : Centralisation de l'historique médical, des allergies et des antécédents.
-- **Facturation Intégrée** : Génération automatique des factures post-consultation avec suivi des paiements.
+### 1. 🎯 Diagramme de Cas d'Utilisation (Use Case)
+*Ce diagramme présente les interactions des acteurs (Admin, Médecin, Patient) avec le système hospitalier.*
+<p align="center">
+  <img src="docs/usecase.png" width="85%" alt="Use Case Diagram" style="border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+</p>
 
-## 🛡️ Architecture & Sécurité
+### 2. 🗂️ Diagramme de Classes (Class Diagram)
+*Il décrit la structure de données relationnelle et l'ORM (Eloquent) gérant les entités de la base de données.*
+<p align="center">
+  <img src="docs/class.png" width="95%" alt="Class Diagram" style="border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+</p>
 
-- **Middleware de Rôle (RBAC)** : Système de contrôle d'accès basé sur les rôles (Admin vs Médecin).
-- **Validation de Données** : Couche de validation stricte sur toutes les entrées utilisateur.
-- **Sécurité Laravel** : Protection native contre les failles CSRF, XSS et injections SQL.
+### 3. ⏱️ Diagramme de Séquence (Sequence Diagram)
+*Ce diagramme illustre le cycle de vie de prise de rendez-vous et de consultation entre les différents composants.*
+<p align="center">
+  <img src="docs/sequence.png" width="90%" alt="Sequence Diagram" style="border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+</p>
 
-## 🛠️ Stack Technique
+---
 
-| Technologie         | Utilisation                                         |
-| :------------------ | :-------------------------------------------------- |
-| **Laravel 12**      | Moteur Backend & Architecture MVC                   |
-| **PHP 8.2+**        | Logique métier haute performance                    |
-| **Blade Engine**    | Interfaces dynamiques et réutilisables              |
-| **Vanilla CSS 3.0** | Design System propriétaire sans dépendances lourdes |
-| **Vite**            | Bundleur d'assets ultra-rapide                      |
-| **MySQL/SQLite**    | Gestion de base de données relationnelle            |
+## 🛠️ Stack Technique & Architecture
 
-## 🚀 Guide d'Installation
+<table align="center" style="width: 100%;">
+  <tr>
+    <td style="width: 50%; vertical-align: top;">
+      <h4>🖥️ Core Backend & Système</h4>
+      <ul>
+        <li><b>Laravel 12 (PHP 8.2+)</b> : Architecture MVC robuste, sécurité et ORM Eloquent.</li>
+        <li><b>Simple QRCode (Format SVG)</b> : Génération vectorielle légère intégrée au PDF.</li>
+        <li><b>MySQL / SQLite</b> : Moteur de stockage relationnel structuré.</li>
+      </ul>
+    </td>
+    <td style="width: 50%; vertical-align: top;">
+      <h4>🎨 Frontend & Interaction</h4>
+      <ul>
+        <li><b>React 18 & Tailwind CSS</b> : Interface mobile de vérification sécurisée, réactive et autonome.</li>
+        <li><b>Vanilla CSS 3.0 & Blade</b> : Design system épuré (Nova Theme) sans framework CSS lourd.</li>
+        <li><b>Chart.js</b> : Rendu graphique vectoriel interactif et dynamique.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🚀 Installation & Démarrage
 
 ### Pré-requis
+* PHP `>= 8.2`
+* Composer
+* Node.js & NPM
 
-- PHP >= 8.2
-- Composer
-- Node.js & NPM
+### Étape 1 : Clone & Dépendances Backend
+```bash
+git clone https://github.com/Amine-NAHLI/hopital-app.git
+cd hopital-app
+composer install
+npm install
+```
 
-### Étapes
+### Étape 2 : Fichier d'environnement & Clé de sécurité
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+> [!IMPORTANT]
+> Dans votre fichier `.env`, configurez votre clé API Groq `GROQ_API_KEY` pour activer l'assistant IA, et configurez `TUNNEL_URL` pour pointer vers le portail de confirmation.
 
-1. **Initialisation**
+### Étape 3 : Migration & Base de Données
+```bash
+php artisan migrate --seed
+```
 
-    ```bash
-    git clone [url-du-repo]
-    cd hopital-app
-    composer install
-    npm install
-    ```
+### Étape 4 : Lancement
+```bash
+# Lancer le serveur local
+php artisan serve
 
-2. **Configuration**
+# Dans un terminal séparé : Compiler les assets
+npm run dev
+```
 
-    ```bash
-    cp .env.example .env
-    php artisan key:generate
-    ```
+---
 
-3. **Déploiement Base de Données**
+## 👤 Comptes de Test (Démo)
 
-    ```bash
-    php artisan migrate --seed
-    ```
+Pour vous connecter instantanément lors de la démo, utilisez les profils pré-générés suivants :
 
-4. **Lancement**
-    ```bash
-    php artisan serve
-    # Dans un terminal séparé
-    npm run dev
-    ```
+### 1. 🛡️ Espace Administrateur
+* **Email :** `admin@hopital.com`
+* **Mot de passe :** `password`
 
-## 📂 Documentation Interne
-
-Le code source est entièrement documenté. Chaque fichier (`Controllers`, `Models`, `Middleware`) dispose d'un en-tête descriptif précisant :
-
-- Le rôle précis du fichier.
-- Sa place dans l'écosystème MediCore.
-- Les interactions avec les autres composants.
+### 2. 👩‍⚕️ Espace Médecin (Dr. Karim Bennani)
+* **Email :** `medecin@hopital.com`
+* **Mot de passe :** `password`
 
 ---
 
 <div align="center">
-    <i>Propulsé par l'innovation médicale — MediCore Pro © 2026</i>
+  <i>Propulsé par la rigueur scientifique et l'innovation — MediCore Nova © 2026</i>
 </div>
