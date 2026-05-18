@@ -106,6 +106,18 @@
                 <textarea id="notes" class="form-control bg-light" rows="7" placeholder="Décrivez les symptômes observés, les constantes du patient ou collez vos notes brutes d'examen..."></textarea>
             </div>
 
+            <!-- Option de Démo: Expiration du QR Code -->
+            <div class="form-check form-switch p-3 rounded-4 bg-light border border-slate-200 d-flex justify-content-between align-items-center mb-1">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-shield-slash text-danger fs-5"></i>
+                    <div class="text-start">
+                        <label class="form-check-label fw-bold text-dark small" for="simulate-expired-switch" style="cursor:pointer; display:block;">Mode Soutenance — QR Expiré</label>
+                        <span class="text-muted" style="font-size: 0.75rem; display:block;">Générer une ordonnance émise il y a 8h pour tester l'écran d'alerte rouge.</span>
+                    </div>
+                </div>
+                <input class="form-check-input ms-0" type="checkbox" role="switch" id="simulate-expired-switch" style="cursor:pointer; width: 2.5em; height: 1.25em;">
+            </div>
+
             <!-- Bouton Analyser -->
             <div class="pt-2">
                 <button type="button" id="btn-analyze" class="btn-nova btn-nova-primary w-100 py-3 justify-content-center fs-6 shadow-lg">
@@ -139,6 +151,7 @@
                 <input type="hidden" name="result_content" id="pdf-result-content">
                 <input type="hidden" name="patient_info" id="pdf-patient-info">
                 <input type="hidden" name="notes" id="pdf-notes">
+                <input type="hidden" name="simulate_expired" id="pdf-simulate-expired" value="0">
             </form>
 
             <!-- Zone de résultat vide par défaut -->
@@ -406,26 +419,13 @@
         });
 
         // Télécharger PDF
-        btnPdf.addEventListener('click', function (e) {
+        btnPdf.addEventListener('click', function () {
             if (!rawAIResult) return;
-
-            // Retirer l'ancien champ s'il existe
-            const oldInput = formPdf.querySelector('input[name="simulate_expired"]');
-            if (oldInput) oldInput.remove();
-
-            // Si la touche Alt (ou Option sur Mac) est enfoncée, on simule une ordonnance expirée
-            if (e.altKey) {
-                const expiredInput = document.createElement('input');
-                expiredInput.type = 'hidden';
-                expiredInput.name = 'simulate_expired';
-                expiredInput.value = '1';
-                formPdf.appendChild(expiredInput);
-            }
-
             pdfType.value = selectedTypeInput.value;
             pdfResultContent.value = rawAIResult;
             pdfPatientInfo.value = currentPatientDisplay;
             pdfNotes.value = notes.value;
+            document.getElementById('pdf-simulate-expired').value = document.getElementById('simulate-expired-switch').checked ? '1' : '0';
             formPdf.submit();
         });
     });
