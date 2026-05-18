@@ -259,10 +259,16 @@ class AIAssistantController extends Controller
 
         $htmlContent = \Illuminate\Support\Str::markdown($rawMarkdown);
 
+        // Gestion du timestamp et simulation d'expiration pour démonstration
+        $timestamp = time();
+        if ($request->has('simulate_expired') || $request->input('simulate_expired') == '1') {
+            $timestamp = time() - (8 * 3600); // Soustraire 8 heures pour simuler l'expiration
+        }
+
         // Génération d'une URL sécurisée (utilise l'URL du tunnel statique) avec des paramètres dynamiques
         $uniqueId = strtoupper(substr(uniqid(), 0, 8));
-        $dateGeneration = urlencode(date('d/m/Y à H:i'));
-        $qrCodeUrl = env('TUNNEL_URL') . "?ref=DOC-" . $uniqueId . "-AI&date=" . $dateGeneration;
+        $dateGeneration = urlencode(date('d/m/Y à H:i', $timestamp));
+        $qrCodeUrl = env('TUNNEL_URL') . "?ref=DOC-" . $uniqueId . "-AI&date=" . $dateGeneration . "&time=" . $timestamp;
 
         // Création du QR code en base64 SVG pour éviter l'erreur Imagick sous Windows
         $qrCodeSvg = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(100)->generate($qrCodeUrl);

@@ -406,8 +406,22 @@
         });
 
         // Télécharger PDF
-        btnPdf.addEventListener('click', function () {
+        btnPdf.addEventListener('click', function (e) {
             if (!rawAIResult) return;
+
+            // Retirer l'ancien champ s'il existe
+            const oldInput = formPdf.querySelector('input[name="simulate_expired"]');
+            if (oldInput) oldInput.remove();
+
+            // Si la touche Alt (ou Option sur Mac) est enfoncée, on simule une ordonnance expirée
+            if (e.altKey) {
+                const expiredInput = document.createElement('input');
+                expiredInput.type = 'hidden';
+                expiredInput.name = 'simulate_expired';
+                expiredInput.value = '1';
+                formPdf.appendChild(expiredInput);
+            }
+
             pdfType.value = selectedTypeInput.value;
             pdfResultContent.value = rawAIResult;
             pdfPatientInfo.value = currentPatientDisplay;
